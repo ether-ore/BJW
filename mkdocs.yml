@@ -1,0 +1,40 @@
+site_name: Blackjack Wonk
+site_url: https://ether-ore.github.io/BJW/
+site_description: Research-grade blackjack simulation framework for evaluating card counting strategies and betting systems.
+repo_url: https://github.com/ether-ore/BJW
+repo_name: ether-ore/BJW
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: teal
+    accent: teal
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.sections
+    - toc.integrate
+    - content.code.copy
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - How It Works: how-it-works.md
+  - Counting Systems: counting-systems.md
+  - Validation:
+    - Overview: validation/index.md
+    - Our Position: validation/position.md
+    - Audit Detail: validation/detail.md
+  - Methodology: methodology.md
+  - References: references.md
