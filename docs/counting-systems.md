@@ -65,4 +65,4 @@ For all balanced systems, BJW calculates true count using:
 - **Basis**: cards remaining (not cards dealt)
 - **Burn card**: 1 card burned per shoe (configurable)
 
-This configuration is used in all validation suite runs. See [Methodology](../methodology.md) for detail on why this matters.
+This configuration is used in all validation suite runs. See [Methodology](methodology.md) for detail on why this matters.
