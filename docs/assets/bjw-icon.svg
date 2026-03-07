@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#111"/>
+  <!-- Spade icon in white, centered -->
+  <!-- left lobe -->
+  <circle cx="24" cy="35" r="10" fill="white"/>
+  <!-- right lobe -->
+  <circle cx="40" cy="35" r="10" fill="white"/>
+  <!-- spike -->
+  <polygon points="32,12  20,35  44,35" fill="white"/>
+  <!-- stem -->
+  <rect x="28.5" y="43" width="7" height="8" rx="1.5" fill="white"/>
+  <!-- base -->
+  <rect x="22" y="49" width="20" height="4.5" rx="2.25" fill="white"/>
+</svg>
