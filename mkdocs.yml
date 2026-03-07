@@ -6,12 +6,12 @@ repo_name: ether-ore/BJW
 
 theme:
   name: material
-  logo: assets/bjw-logo-dark.svg
+  logo: assets/bjw-logo.svg
   favicon: assets/bjw-icon.svg
   palette:
-    scheme: slate
-    primary: teal
-    accent: teal
+    scheme: default
+    primary: white
+    accent: blue
   features:
     - navigation.tabs
     - navigation.tabs.sticky
