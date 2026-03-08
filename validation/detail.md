@@ -94,7 +94,6 @@ A set of properties that any mathematically correct blackjack simulator must sat
 | 6D H17 flat EV within published house-edge band | ✓ Pass |
 | S17 EV > H17 EV (matched conditions) | ✓ Pass |
 | Hi-Lo 6D EV monotonically increasing by TC bin | ✓ Pass |
-| Hi-Lo 6D EV monotonically increasing — all TC bins | ✓ Pass |
 | Hi-Lo 6D S17 EV > flat EV (counting adds edge) | ✓ Pass |
 | Hi-Lo 8D EV monotonically increasing by TC bin | ✓ Pass |
 | Hi-Lo 1D EV monotonically increasing by TC bin | **Explained residual** |

@@ -32,7 +32,7 @@ Every simulation is driven by a **manifest** — a JSON configuration capturing 
 
 **Counting systems**: Hi-Lo, KO, REKO, Zen, Halves, Hi-Opt I, Hi-Opt II, Omega II, Red Seven, Ace-Five, and others — see [Counting Systems](counting-systems.md)
 
-**Betting**: flat, count-based spreads (1-2 through 1-16+), progressions (Martingale, Paroli, 1-3-2-6, and others), state machine policies
+**Betting**: flat, count-based spreads (1-2 through 1-15), progressions (Martingale, Paroli, 1-3-2-6, and others), state machine policies
 
 **Deviations**: Illustrious 18 (Hi-Lo), KO Preferred and Full sets, custom deviation policies
 
