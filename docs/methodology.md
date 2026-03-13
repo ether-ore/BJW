@@ -4,7 +4,7 @@
 
 **Minimum for conclusions: 1 billion rounds.**
 
-Results from smaller runs are used only for development testing. All published results and validation work use 1B rounds per configuration. At 1B rounds, standard error on EV is on the order of 0.001pp for a 6-deck 1-unit flat betting scenario — well below any meaningful decision threshold.
+Results from smaller runs are used only for development testing. All published results and validation work use 1B rounds per configuration. At 1B rounds, standard error on EV is approximately 0.004pp for a 6-deck 1-unit flat betting scenario (SE = SD / √N ≈ 1.12 / √1,000,000,000 ≈ 0.0035pp, empirically confirmed against the 6D S17 flat validation run) — well below any meaningful decision threshold.
 
 ---
 
@@ -19,7 +19,7 @@ Every BJW simulation is fully specified by a **manifest file**. The manifest cap
 - Deviation set (index plays with TC thresholds)
 - PRNG seed
 
-Same manifest + same seed = same results on any machine, any run. The manifest hash serves as the experiment identifier.
+Same manifest + same seed = same results on any machine. The manifest hash serves as the experiment identifier.
 
 Manifests are schema-validated before execution. If a manifest references a counting system, betting spread, or deviation set that is incompatible with the declared rules, the configurator rejects it before any simulation runs.
 
@@ -92,3 +92,4 @@ See [Validation Position](validation/position.md) for full detail.
 | October 2025 | Initial simulator build; basic strategy, Hi-Lo, and flat/spread betting operational |
 | March 2026 | Full validation campaign: policy audit (224 checks), formula recompute audit (400 checks), theory sanity matrix, CVData comparison across 8 core scenarios at 1B rounds each |
 | March 7, 2026 | Option 1 lock: Track B pass accepted as correctness baseline; Track A residuals documented and classified |
+| March 13, 2026 | Additional simulator/configurator fixes landed; full core suite rerun narrowed several counted deltas but Track A remained 0/8 |

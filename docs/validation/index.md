@@ -1,6 +1,6 @@
 # Validation
 
-*As of March 7, 2026.*
+*As of March 13, 2026.*
 
 ---
 
@@ -17,7 +17,7 @@ These are different questions and have different answers.
 
 | Track | Status | Detail |
 |---|---|---|
-| Track A (CVData parity) | **0/8 scenarios pass** | Gaps documented and classified by root cause |
+| Track A (CVData parity) | **0/8 scenarios pass** | March 13 rerun after two additional fixes still leaves residual gaps |
 | Track B (Policy audit) | **224/224 checks pass** | All 16 play policy variants audited against published charts |
 | Track B (Formula audit) | **400/400 checks pass** | Chapter 10 independently recomputed from raw accumulators |
 | Track B (Theory matrix) | **7/8 pass, 1 explained residual** | Flat EV bands, directional invariants, monotonicity |
@@ -28,7 +28,9 @@ These are different questions and have different answers.
 
 Track B passing means BJW correctly implements the math. The Schlesinger Chapter 10 variance formula is not approximated — it is computed exactly, and verified independently by recomputing every figure from raw per-hand accumulators in a separate Python script.
 
-Track A not passing means BJW and CVData disagree on counted scenario outputs. CVData is a closed-source commercial tool. Without access to its internals, the exact source of the disagreement cannot be fully resolved. The leading mechanism — TC bucket occupancy drift — is documented and classified. It is not a formula error.
+Track A not passing means BJW and CVData still disagree on counted scenario outputs. One confirmed BJW-side contributor has now been fixed: BJW no longer counts the dealer hole card before the player's first decision. That materially narrowed several counted deltas, but the remaining residuals still point primarily to true-count frequency / occupancy drift rather than a formula or policy error.
+
+On the March 13 rerun, 7 of the 8 refreshed BJW core results passed internal telemetry verification; the only nonzero verifier result is the known 1D A6 monotonicity residual.
 
 **Our position**: Track B passing is the correctness claim. Track A is a parity check against one specific external tool, not a correctness gate. We publish both results openly.
 
