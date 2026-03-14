@@ -17,9 +17,11 @@ BJW supports the following counting systems. All are implemented as tag-value fi
 | Hi-Opt II | Balanced | 2 | True count | TC ≥ 3 | — |
 | Omega II | Balanced | 2 | True count | TC ≥ 3 | — |
 | Red Seven | Unbalanced | 1 | Running count | RC ≥ 2 | — |
-| Ace-Five | Unbalanced | 1 | Running count | Never | — |
+| Ace-Five | Balanced ‡ | 1 | Running count | Never | — |
 
 **† Zen Count insurance note**: Zen uses ±2 tags; its running count accumulates roughly twice as fast as Hi-Lo. TC ≥ 5 under Zen corresponds to approximately the same insurance edge threshold as TC ≥ 3 under Hi-Lo. Threshold confirmed against primary source and empirically verified at 100M rounds (zero insurance taken below TC+5; positive EV in both above-threshold bins).
+
+**‡ Ace-Five balance note**: Ace-Five's tag values (Ace = −1, Five = +1, all others = 0) sum to zero across a complete deck, so it satisfies the mathematical definition of a balanced count. However, it does not use a true count divisor — the betting trigger is a raw running count threshold. It is listed separately from the unbalanced systems (KO, REKO, Red Seven) which require an initial running count offset to compensate for deck imbalance.
 
 ---
 

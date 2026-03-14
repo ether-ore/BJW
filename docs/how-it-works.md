@@ -30,6 +30,8 @@ A manifest is a complete, self-contained simulation specification. It includes:
 
 Manifests are schema-validated before execution. A manifest hash serves as the experiment identifier — the same manifest + same seed produces the same results on any machine.
 
+→ [Example manifest (6D S17 flat, no counting)](examples/manifest_6D_S17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_notcounting_flat_betting_burn1_tcdiv_half_deck_seed12345.json)
+
 ---
 
 ## The Betting VM
@@ -43,7 +45,7 @@ This means any betting strategy expressible in the policy language can be simula
 | Kind | Examples |
 |---|---|
 | `flat` | 1 unit every hand |
-| `bucket_spread` | Hi-Lo 1-12: bet scales with true count |
+| `bucket_spread` | Hi-Lo 1-12: bet scales with count (TC for balanced systems, RC for unbalanced) |
 | `progression` | 1-3-2-6, Paroli, Martingale |
 | `state_machine` | Custom formulas with session state |
 
@@ -51,7 +53,7 @@ This means any betting strategy expressible in the policy language can be simula
 
 ## Parallel Execution
 
-For large simulations (100M–1B+ rounds), BJW spawns multiple worker processes that each run a subset of rounds and aggregate results. Aggregation uses a declarative rule engine — over 140 field-level rules specifying whether each metric is summed, histogrammed, or derived.
+For large simulations (100M–1B+ rounds), BJW spawns multiple worker processes that each run a subset of rounds and aggregate results. Aggregation uses a declarative rule engine — approximately 120 field-level rules specifying whether each metric is summed, histogrammed, or derived.
 
 Parallel and single-threaded modes produce **identical results** for any given manifest and seed. This is verified via binary deck regression runs, where a pre-shuffled shoe sequence is fed identically to both modes and the outputs are required to match exactly — not approximately.
 
@@ -65,9 +67,9 @@ Simulator output is a structured JSON file containing:
 - `summary.naive`: per-hand and per-round SD using simple Welford variance
 - `summary.chapter10`: full Schlesinger Chapter 10 decomposition — E[b], E[w], Var(b), Var(w), Cov(b,w), DI, SCORE, N₀
 - `summary.di_adjusted`: DI-adjusted variance using simulation-derived Var(w)
-- `ev_by_tc`: EV breakdown by true count bucket
-- `tc_frequencies`: time distribution across TC bins at bet-decision point
-- `count_histogram`: running count distribution
-- `action_summary`: doubles, splits, surrenders, insurance by scenario
+- `evByBucket`: EV breakdown by count bucket (TC for balanced systems, RC for unbalanced) — includes rounds played, average bet, EV per hand, and SD per hand for each bucket
+- `count_histogram`: RC, TC, and RC-per-deck frequency distributions sampled at bet-decision point
+- `counters`: doubles, splits, surrenders, insurance events, deviations applied
+- `actions_by_state_upcard`: per-decision-state action frequencies broken down by dealer upcard
 
 All metrics feed the validation pipeline, which independently recomputes Chapter 10 figures from raw accumulators to verify formula correctness.
