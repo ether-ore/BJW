@@ -65,11 +65,11 @@ Simulator output is a structured JSON file containing:
 
 - `round_summary`: rounds played, hands, wins, losses, pushes
 - `summary.naive`: per-hand and per-round SD using simple Welford variance
-- `summary.chapter10`: full Schlesinger Chapter 10 decomposition — E[b], E[w], Var(b), Var(w), Cov(b,w), DI, SCORE, N₀
+- `summary.chapter10`: legacy-named BJW variance block — E[b], E[w], Var(b), Var(w), Cov(b,w), DI, SCORE, N₀
 - `summary.di_adjusted`: DI-adjusted variance using simulation-derived Var(w)
 - `evByBucket`: EV breakdown by count bucket (TC for balanced systems, RC for unbalanced) — includes rounds played, average bet, EV per hand, and SD per hand for each bucket
 - `count_histogram`: RC, TC, and RC-per-deck frequency distributions sampled at bet-decision point
 - `counters`: doubles, splits, surrenders, insurance events, deviations applied
 - `actions_by_state_upcard`: per-decision-state action frequencies broken down by dealer upcard
 
-All metrics feed the validation pipeline, which independently recomputes Chapter 10 figures from raw accumulators to verify formula correctness.
+All metrics feed the validation pipeline, which independently recomputes the variance/risk figures in that block from raw accumulators to verify implementation correctness.

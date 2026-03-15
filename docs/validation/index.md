@@ -19,14 +19,14 @@ These are different questions and have different answers.
 |---|---|---|
 | Track A (CVData parity) | **0/8 scenarios pass** | March 13 rerun after two additional fixes still leaves residual gaps |
 | Track B (Policy audit) | **224/224 checks pass** | All 16 play policy variants audited against published charts |
-| Track B (Formula audit) | **400/400 checks pass** | Chapter 10 independently recomputed from raw accumulators |
+| Track B (Formula audit) | **400/400 checks pass** | Variance/risk outputs independently recomputed from raw accumulators |
 | Track B (Theory matrix) | **7/8 pass, 1 explained residual** | Flat EV bands, directional invariants, monotonicity |
 
 ---
 
 ## What This Means
 
-Track B passing means BJW correctly implements the math. The Schlesinger Chapter 10 variance formula is not approximated — it is computed exactly, and verified independently by recomputing every figure from raw per-hand accumulators in a separate Python script.
+Track B passing means BJW correctly implements the math. BJW's current variable-betting variance decomposition and downstream SD/DI/SCORE/N₀ calculations are recomputed exactly from raw per-hand accumulators in a separate Python script.
 
 Track A not passing means BJW and CVData still disagree on counted scenario outputs. One confirmed BJW-side contributor has now been fixed: BJW no longer counts the dealer hole card before the player's first decision. That materially narrowed several counted deltas, but the remaining residuals still point primarily to true-count frequency / occupancy drift rather than a formula or policy error.
 

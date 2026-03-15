@@ -11,7 +11,7 @@ BJW is a tool for people who already know the math — analysts, counters, and r
 BJW simulates blackjack play under fully specified conditions and produces:
 
 - **EV per hand** — expected value under the configured strategy and rules
-- **SD, DI, SCORE, N₀** — via the Schlesinger Chapter 10 variance framework
+- **SD, DI, SCORE, N₀** — via BJW's current variance and risk pipeline
 - **EV by count bucket** — per-TC (or per-RC for unbalanced systems) breakdown of edge contribution
 - **Count frequency distribution** — time spent at each TC or RC level
 - **Action frequencies** — doubles, splits, surrenders, insurance decisions
@@ -40,7 +40,7 @@ Every simulation is driven by a **manifest** — a JSON configuration capturing 
 
 ## Validation Status
 
-BJW's math is independently verified against the Schlesinger Chapter 10 variance formula. Basic strategy across all 16 policy variants has been audited against published charts.
+BJW's variance, SD, DI, SCORE, and N₀ outputs are independently recomputed from raw accumulators. Basic strategy across all 16 policy variants has been audited against published charts.
 
 BJW does not currently match CVData output on counted scenarios. The gap is documented, classified by root cause, and published openly.
 

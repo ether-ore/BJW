@@ -6,7 +6,7 @@
 
 ## What This Page Is
 
-This page documents what BJW has verified, what it hasn't, and why we believe the results are trustworthy for the claims we make. It is written for an audience familiar with Schlesinger's Chapter 10 variance framework, Griffin's theory, and tools like CVData/CVCX. We are not softening the limitations.
+This page documents what BJW has verified, what it hasn't, and why we believe the results are trustworthy for the claims we make. It is written for an audience familiar with blackjack variance/DI/SCORE literature, Griffin's theory, and tools like CVData/CVCX. We are not softening the limitations.
 
 ---
 
@@ -31,13 +31,15 @@ All other insurance thresholds confirmed against counting system source files: H
 
 ### 2. Variance and Risk Metric Calculations
 
-BJW implements the Schlesinger Chapter 10 variance formula directly:
+BJW currently computes variance/risk metrics with the following variable-betting variance decomposition:
 
 > **Var(session) = E[b²] · Var(w) + Var(b) · E[w]² + 2 · Cov(b,w) · E[b] · E[w]**
 
 Where *b* is bet size and *w* is outcome per unit wagered.
 
-To verify this implementation, we built a separate Python validation script entirely independent of the simulator. This script reads the raw per-hand accumulators from simulator output — sums of *b*, *w*, *b²*, *w²*, and *bw* — and recomputes every derived metric from scratch: E[b], E[w], Var(b), Var(w), Cov(b,w), the full Chapter 10 variance, DI, SCORE, and N₀.
+This equation is BJW's own implementation choice. It is not presented here as a direct quoted equation from *Blackjack Attack*.
+
+To verify this implementation, we built a separate Python validation script entirely independent of the simulator. This script reads the raw per-hand accumulators from simulator output — sums of *b*, *w*, *b²*, *w²*, and *bw* — and recomputes every derived metric from scratch: E[b], E[w], Var(b), Var(w), Cov(b,w), the full variance result for this reporting path, DI, SCORE, and N₀.
 
 We then verified the algebraic identities:
 
@@ -106,7 +108,7 @@ We cannot resolve the remaining gap with certainty because CVData is closed-sour
 
 What we can say:
 
-- This is not a formula error. Chapter 10 implementation is independently verified.
+- This is not a math-pipeline error. BJW's current variance/risk implementation is independently recomputed.
 - This is not a basic strategy error. Play policies are audited.
 - At least one BJW-side decision-timing bug was real and is now fixed.
 - The gap persists after testing multiple TC divisor configurations.

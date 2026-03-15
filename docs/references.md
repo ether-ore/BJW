@@ -3,7 +3,7 @@
 ## Primary Sources
 
 **Schlesinger, Don.** *Blackjack Attack: Playing the Pros' Way.* 3rd ed. RGE Publishing, 2005.
-Chapter 10 ("The Theory of Blackjack Revisited") is the primary mathematical reference for BJW's variance framework. The Chapter 10 formula — Var(session) = E[b²]·Var(w) + Var(b)·E[w]² + 2·Cov(b,w)·E[b]·E[w] — is implemented directly and independently verified. DI, SCORE, and N₀ derivations follow Schlesinger's formulations.
+BJW references this book for DI, SCORE, N₀, deviation, and blackjack simulation literature. BJW's current variable-betting variance decomposition is a BJW implementation choice; it is not currently presented as a direct quoted equation from this book.
 
 **Griffin, Peter A.** *The Theory of Blackjack: The Compleat Card Counter's Guide to the Casino Game of 21.* 6th ed. Huntington Press, 1999.
 Foundational mathematical treatment of blackjack probability, house edge, and card counting theory.

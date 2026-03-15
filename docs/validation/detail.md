@@ -48,9 +48,11 @@ All other thresholds confirmed correct against source files (Hi-Lo TC ≥ 3, KO 
 
 ### What Was Checked
 
-BJW implements the Schlesinger Chapter 10 variance formula:
+BJW currently uses the following variable-betting variance decomposition in its `summary.chapter10` reporting path:
 
 > **Var(session) = E[b²] · Var(w) + Var(b) · E[w]² + 2 · Cov(b,w) · E[b] · E[w]**
+
+This equation is BJW's own implementation choice. It is not presented here as a direct quoted equation from *Blackjack Attack*.
 
 To verify this, a separate Python script (not part of the simulator) reads the raw per-hand accumulators from simulator output and recomputes every derived metric independently:
 
@@ -68,13 +70,13 @@ To verify this, a separate Python script (not part of the simulator) reads the r
 - Var(b) = sum_b2/count − E[b]²
 - Var(w) = sum_w2/count − E[w]²
 - Cov(b,w) = sum_bw/count − E[b]·E[w]
-- Full Chapter 10 variance
+- Full variance result for this reporting path
 - DI = E[b] · E[w] / √Var(session)
 
 **Algebraic identities verified**:
 - DI² = SCORE
 - SCORE × N₀ = 1,000,000
-- variance = SD²  (for all three methodology variants: naive, Chapter 10, DI-adjusted)
+- variance = SD²  (for all three methodology variants: naive, `summary.chapter10`, DI-adjusted)
 
 This is a genuine independent recomputation — the Python script derives all metrics from first principles using only the raw accumulator values. It does not call any simulator code.
 
@@ -82,7 +84,7 @@ This is a genuine independent recomputation — the Python script derives all me
 
 **400 blocking checks across 16 result files (8 scenarios × 100M rounds + 1B rounds). 0 failures. Tolerance: 1×10⁻⁶.**
 
-This confirms: BJW's variance, SD, DI, SCORE, and N₀ figures are correct given the game data collected. The formula implementation is verified.
+This confirms: BJW's variance, SD, DI, SCORE, and N₀ figures are correct given the game data collected. The implementation is verified.
 
 ---
 
