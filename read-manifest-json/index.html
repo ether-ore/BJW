@@ -1,0 +1,1347 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research-grade blackjack simulation framework for evaluating card counting strategies and betting systems.">
+      
+      
+      
+        <link rel="canonical" href="https://ether-ore.github.io/BJW/read-manifest-json/">
+      
+      
+        <link rel="prev" href="../how-it-works/">
+      
+      
+        <link rel="next" href="../read-results-json/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/bjw-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Manifest Guide - Blackjack Wonk</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-read-a-raw-manifest-json-file" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Blackjack Wonk" class="md-header__button md-logo" aria-label="Blackjack Wonk" data-md-component="logo">
+      
+  <img src="../assets/bjw-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blackjack Wonk
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Manifest Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ether-ore/BJW" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ether-ore/BJW
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../how-it-works/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  How It Works
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Reading JSON
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../counting-systems/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Counting Systems
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../validation/" class="md-tabs__link">
+          
+  
+  
+  Validation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../methodology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Methodology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../formula-inventory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Formula Inventory
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../references/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  References
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Blackjack Wonk" class="md-nav__button md-logo" aria-label="Blackjack Wonk" data-md-component="logo">
+      
+  <img src="../assets/bjw-logo.svg" alt="logo">
+
+    </a>
+    Blackjack Wonk
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ether-ore/BJW" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ether-ore/BJW
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading JSON
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reading JSON
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manifest Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manifest Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-in-60-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON in 60 Seconds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-manifest-tells-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a Manifest Tells You
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-the-file-in-this-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read the File in This Order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read the File in This Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-start-with-manifest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Start with manifest_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-read-environmentruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Read environment.ruleset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-read-environmentrandom_source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Read environment.random_source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-read-counting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Read counting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-read-betting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Read betting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-read-payouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Read payouts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-skim-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Skim policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-treat-sim_hash-meta-bucketing-and-presim-as-support-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Treat sim_hash, meta, bucketing, and presim as support material
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-good-30-second-manifest-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Good 30-Second Manifest Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Step
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-results-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counting-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counting Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Our Position
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/detail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Detail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="how-to-read-a-raw-manifest-json-file">How to Read a Raw Manifest JSON File<a class="headerlink" href="#how-to-read-a-raw-manifest-json-file" title="Permanent link">&para;</a></h1>
+<p>Canonical source: <a href="https://github.com/ether-ore/BJW/blob/main/docs/guides/how-to-read-a-manifest-json.md">docs/guides/how-to-read-a-manifest-json.md</a></p>
+<p>Example files:</p>
+<ul>
+<li><a href="examples/manifest_6D_H17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_hilo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345.json">Example manifest JSON</a></li>
+<li><a href="../examples/result_6D_H17_DOA_DAS_NRSA_NS_peek%3DA_or_T_pen%3D75_hilo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345.json">Matching results JSON</a></li>
+</ul>
+<p>This page is for blackjack players, not programmers.</p>
+<p>A raw manifest JSON file is the simulation's recipe card. It tells BJW exactly what game to run, what counting system to use, how to bet, and which playing decisions to follow.</p>
+<p>If the manifest is wrong, the simulation is wrong.</p>
+<h2 id="json-in-60-seconds">JSON in 60 Seconds<a class="headerlink" href="#json-in-60-seconds" title="Permanent link">&para;</a></h2>
+<p>You do not need to know coding to read JSON.</p>
+<ul>
+<li>Curly braces <code>{ }</code> mean "this is a box of information."</li>
+<li>A line like <code>"decks": 6</code> means "the number of decks is 6."</li>
+<li>Square brackets <code>[ ]</code> mean "this is a list."</li>
+<li><code>true</code> means yes.</li>
+<li><code>false</code> means no.</li>
+<li>Commas just separate one line from the next.</li>
+</ul>
+<p>That is enough to get started.</p>
+<h2 id="what-a-manifest-tells-you">What a Manifest Tells You<a class="headerlink" href="#what-a-manifest-tells-you" title="Permanent link">&para;</a></h2>
+<p>A manifest answers these blackjack questions:</p>
+<ul>
+<li>What game are we playing?</li>
+<li>What are the rules?</li>
+<li>Which counting system is being used?</li>
+<li>What bet spread is being used?</li>
+<li>Are deviations included?</li>
+<li>Which exact shuffle seed was used?</li>
+</ul>
+<p>It does <strong>not</strong> tell you whether the run won or lost. That lives in the results file.</p>
+<h2 id="read-the-file-in-this-order">Read the File in This Order<a class="headerlink" href="#read-the-file-in-this-order" title="Permanent link">&para;</a></h2>
+<h3 id="1-start-with-manifest_id">1. Start with <code>manifest_id</code><a class="headerlink" href="#1-start-with-manifest_id" title="Permanent link">&para;</a></h3>
+<p>This is the run's name tag.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;manifest_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6D_H17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_Hi-Lo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>You do not need to decode every part of that long name. Just know that it usually packs in the key facts:</p>
+<ul>
+<li><code>6D</code> = 6 decks</li>
+<li><code>H17</code> = dealer hits soft 17</li>
+<li><code>DOA</code> = double on any two</li>
+<li><code>DAS</code> = double after split</li>
+<li><code>NS</code> = no surrender</li>
+<li><code>Hi-Lo</code> = counting system</li>
+<li><code>hilo_1_to_12_common</code> = bet spread</li>
+<li><code>seed12345</code> = random seed</li>
+</ul>
+<h3 id="2-read-environmentruleset">2. Read <code>environment.ruleset</code><a class="headerlink" href="#2-read-environmentruleset" title="Permanent link">&para;</a></h3>
+<p>This is the casino game itself.</p>
+<p>Shortened real example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ruleset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;decks&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;dealer_hits_soft_17&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;double_on_any_two&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;double_after_split&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;resplit_aces&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_splits&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;surrender_allowed&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;dealer_peek_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A_or_T&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;burn_cards&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;penetration_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Plain-English translation:</p>
+<table>
+<thead>
+<tr>
+<th>JSON line</th>
+<th>What it means at the table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>decks: 6</code></td>
+<td>Six-deck shoe</td>
+</tr>
+<tr>
+<td><code>dealer_hits_soft_17: true</code></td>
+<td>Dealer hits soft 17, so this is H17</td>
+</tr>
+<tr>
+<td><code>double_on_any_two: true</code></td>
+<td>You can double on any first two cards</td>
+</tr>
+<tr>
+<td><code>double_after_split: true</code></td>
+<td>DAS is allowed</td>
+</tr>
+<tr>
+<td><code>resplit_aces: false</code></td>
+<td>No resplitting aces</td>
+</tr>
+<tr>
+<td><code>surrender_allowed: false</code></td>
+<td>No surrender</td>
+</tr>
+<tr>
+<td><code>dealer_peek_mode: "A_or_T"</code></td>
+<td>Dealer peeks under ace or ten</td>
+</tr>
+<tr>
+<td><code>penetration_pct: 0.75</code></td>
+<td>About 75 percent of the shoe is dealt before shuffle</td>
+</tr>
+</tbody>
+</table>
+<p>If you only read one part of the file, read this part.</p>
+<h3 id="3-read-environmentrandom_source">3. Read <code>environment.random_source</code><a class="headerlink" href="#3-read-environmentrandom_source" title="Permanent link">&para;</a></h3>
+<p>This tells you how the shuffle was chosen.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;random_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prng&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>What this means:</p>
+<ul>
+<li><code>type: "prng"</code> = normal computer-generated randomness</li>
+<li><code>seed: 12345</code> = the exact starting point for that randomness</li>
+</ul>
+<p>If someone else uses the same manifest and same seed, they should be able to reproduce the same run setup.</p>
+<h3 id="4-read-counting">4. Read <code>counting</code><a class="headerlink" href="#4-read-counting" title="Permanent link">&para;</a></h3>
+<p>This is the counting system section.</p>
+<p>Shortened real example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;counting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hi-Lo Counting Strategy&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hilo&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;balanced&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uses_true_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;starting_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;insurance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;rule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tc&gt;=&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;tc_divisor_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;half_deck&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>How to read it:</p>
+<ul>
+<li><code>system</code> = the count name you already know as a player</li>
+<li><code>balanced: true</code> = cards add up to zero across a full deck</li>
+<li><code>uses_true_count: true</code> = this system converts running count to true count</li>
+<li><code>starting_count: 0</code> = the shoe starts at zero</li>
+<li><code>insurance threshold: 3</code> = insurance starts at TC +3</li>
+<li><code>tc_divisor_mode: "half_deck"</code> = true count is measured in half-deck steps</li>
+</ul>
+<p>There may also be a <code>card_values</code> block listing the tag for each rank. If you already know Hi-Lo tags, you can skim it.</p>
+<h3 id="5-read-betting">5. Read <code>betting</code><a class="headerlink" href="#5-read-betting" title="Permanent link">&para;</a></h3>
+<p>This section tells you how the bet spread works.</p>
+<p>Shortened real example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;betting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;table_min_units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;table_max_units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;policy_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hilo_1_to_12_common&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>That tells you:</p>
+<ul>
+<li>minimum bet = 1 unit</li>
+<li>maximum allowed bet = 100 units</li>
+<li>spread file = <code>hilo_1_to_12_common</code></li>
+</ul>
+<p>If you want the actual spread ladder, keep reading inside <code>policy_vm.bucket_spread.buckets</code>.</p>
+<p>Example rows:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.9</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.9</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Plain English:</p>
+<ul>
+<li>1 unit below TC +1</li>
+<li>2 units at TC +2</li>
+<li>4 units at TC +3</li>
+<li>12 units at TC +7 and above</li>
+</ul>
+<p><code>null</code> here means "no upper limit."</p>
+<h3 id="6-read-payouts">6. Read <code>payouts</code><a class="headerlink" href="#6-read-payouts" title="Permanent link">&para;</a></h3>
+<p>This confirms the pay table.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;payouts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;blackjack&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;normal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;insurance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Translation:</p>
+<ul>
+<li>blackjack pays 3:2</li>
+<li>regular wins pay 1:1</li>
+<li>insurance pays 2:1</li>
+</ul>
+<h3 id="7-skim-policies">7. Skim <code>policies</code><a class="headerlink" href="#7-skim-policies" title="Permanent link">&para;</a></h3>
+<p>This is the giant decision section.</p>
+<p>It usually contains:</p>
+<ul>
+<li><code>play_policy</code></li>
+<li><code>insurance_policy</code></li>
+<li><code>bet_policy</code></li>
+<li>sometimes <code>deviations</code></li>
+</ul>
+<p>This part looks intimidating because it can be huge. That is normal.</p>
+<p>For a non-programmer, the main point is simple:</p>
+<ul>
+<li><code>play_policy</code> = what the player does with each hand</li>
+<li><code>insurance_policy</code> = when insurance is taken</li>
+<li><code>bet_policy</code> = how bet size changes with the count</li>
+</ul>
+<p>If you are not auditing exact hand decisions, you can mostly skim this section.</p>
+<h3 id="8-treat-sim_hash-meta-bucketing-and-presim-as-support-material">8. Treat <code>sim_hash</code>, <code>meta</code>, <code>bucketing</code>, and <code>presim</code> as support material<a class="headerlink" href="#8-treat-sim_hash-meta-bucketing-and-presim-as-support-material" title="Permanent link">&para;</a></h3>
+<p>These sections matter, but they are not where a player should start.</p>
+<ul>
+<li><code>sim_hash</code> = a fingerprint for the manifest</li>
+<li><code>meta</code> = provenance notes, source files, and bookkeeping</li>
+<li><code>bucketing</code> = the count range the sim tracks, like TC -10 through +10</li>
+<li><code>presim</code> = machine-prepared lookup data used by the simulator</li>
+</ul>
+<p>Useful for auditing. Not the first thing to read.</p>
+<h2 id="a-good-30-second-manifest-check">A Good 30-Second Manifest Check<a class="headerlink" href="#a-good-30-second-manifest-check" title="Permanent link">&para;</a></h2>
+<p>Before trusting a simulation, answer these six questions:</p>
+<ol>
+<li>Is the game right? Decks, H17/S17, DAS, surrender, penetration.</li>
+<li>Is the count right?</li>
+<li>Is the spread right?</li>
+<li>Are deviations included or not?</li>
+<li>Is the blackjack payout right?</li>
+<li>Is this the seed and file you meant to run?</li>
+</ol>
+<p>If those six are right, the manifest is probably the one you wanted.</p>
+<h2 id="next-step">Next Step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
+<p>Once the manifest makes sense, read the matching <a href="../read-results-json/">results file guide</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.sections", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

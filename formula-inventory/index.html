@@ -1,0 +1,4011 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research-grade blackjack simulation framework for evaluating card counting strategies and betting systems.">
+      
+      
+      
+        <link rel="canonical" href="https://ether-ore.github.io/BJW/formula-inventory/">
+      
+      
+        <link rel="prev" href="../methodology/">
+      
+      
+        <link rel="next" href="../references/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/bjw-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Formula Inventory - Blackjack Wonk</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bjw-blackjackap-formula-inventory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Blackjack Wonk" class="md-header__button md-logo" aria-label="Blackjack Wonk" data-md-component="logo">
+      
+  <img src="../assets/bjw-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blackjack Wonk
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Formula Inventory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ether-ore/BJW" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ether-ore/BJW
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../how-it-works/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  How It Works
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../read-manifest-json/" class="md-tabs__link">
+          
+  
+  
+  Reading JSON
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../counting-systems/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Counting Systems
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../validation/" class="md-tabs__link">
+          
+  
+  
+  Validation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../methodology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Methodology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Formula Inventory
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../references/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  References
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Blackjack Wonk" class="md-nav__button md-logo" aria-label="Blackjack Wonk" data-md-component="logo">
+      
+  <img src="../assets/bjw-logo.svg" alt="logo">
+
+    </a>
+    Blackjack Wonk
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ether-ore/BJW" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ether-ore/BJW
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reading JSON
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reading JSON
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-manifest-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manifest Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-results-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../counting-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counting Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Our Position
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/detail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Detail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Inventory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-high-level-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important High-Level Findings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formula-status-legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formula Status Legend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How To Use This Document
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formula-map-by-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formula Map By Operation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#same-name-different-formula-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Same Name, Different Formula Index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-counting-and-decision-variable-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Counting and Decision-Variable Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Counting and Decision-Variable Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-running-count-tag-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Running Count Tag Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-theoretical-running-count-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Theoretical Running Count Bounds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-decks-remaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Decks Remaining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-deck-quantization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Deck Quantization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-true-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 True Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-tc-bucket-rounding-and-clamping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 TC Bucket Rounding and Clamping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-depth-adjusted-running-count-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Depth-Adjusted Running Count Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-wonging-entryexit-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Wonging Entry/Exit Thresholds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-wonging-round-accounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Wonging Round Accounting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-penetration-to-cut-card-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 Penetration to Cut-Card Conversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-betting-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Betting Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Betting Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-count-spread-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Count Spread Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-kelly-edge-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Kelly Edge Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-kelly-variance-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Kelly Variance Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-kelly-fraction-and-bet-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Kelly Fraction and Bet Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-kelly-edge-table-discretization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Kelly Edge-Table Discretization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-progression-bet-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Progression Bet Formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-state-machine-special-calculation-total_loss-040" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 State-Machine Special Calculation (total_loss * 0.40)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-blackjack-engine-and-settlement-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Blackjack Engine and Settlement Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Blackjack Engine and Settlement Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-hand-total-with-ace-adjustment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Hand Total with Ace Adjustment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dealer-play-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Dealer Play Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-blackjack-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Blackjack Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-double-eligibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Double Eligibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-surrender-eligibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Surrender Eligibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-insurance-decision-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Insurance Decision Threshold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-insurance-settlement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Insurance Settlement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-insurance-effective-probability-and-ev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Insurance Effective Probability and EV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-insurance-break-even-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Insurance Break-Even Calibration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-natural-surrender-winlosspush-settlement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Natural, Surrender, Win/Loss/Push Settlement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-initial-pair-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Initial Pair Probability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-pairsplitwin-loss-pushvolume-rates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 Pair/Split/Win-Loss-Push/Volume Rates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-canonical-runtime-performance-and-risk-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Canonical Runtime Performance and Risk Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Canonical Runtime Performance and Risk Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-observed-sample-variance-via-welford" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Observed Sample Variance via Welford
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ev-per-hand-per-round-per-initial-bet-and-average-bet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 EV per Hand, per Round, per Initial Bet, and Average Bet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-primary-risk-basis-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Primary Risk Basis Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 SCORE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-desirability-index-di" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Desirability Index (DI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-canonical-runtime-n0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Canonical Runtime N0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-risk-of-ruin-ror-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Risk of Ruin (RoR) Approximation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-bankroll-sizing-from-target-ror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Bankroll Sizing from Target RoR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-parallel-aggregation-and-pooled-variance-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Parallel Aggregation and Pooled Variance Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Parallel Aggregation and Pooled Variance Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-pooled-mean-and-variance-for-merged-worker-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Pooled Mean and Variance for Merged Worker Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-per-bucket-and-decision-telemetry-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Per-Bucket and Decision-Telemetry Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Per-Bucket and Decision-Telemetry Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-ev-by-bucket-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 EV-by-Bucket Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-exact-decision-variable-sd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Exact Decision Variable SD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-decision-telemetry-action-evsd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Decision Telemetry Action EV/SD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-legacy-and-diagnostic-variance-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Legacy and Diagnostic Variance Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Legacy and Diagnostic Variance Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-legacy-chapter10-variance-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Legacy chapter10 Variance Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-legacy-di_adjusted-reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Legacy di_adjusted Reconstruction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-rms-sd-validation-heuristic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 RMS SD Validation Heuristic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reporting-helper-optimizer-and-experiment-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Reporting, Helper, Optimizer, and Experiment Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Reporting, Helper, Optimizer, and Experiment Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-sharpe-like-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Sharpe-Like Ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-reweighting-formulas-for-spread-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Reweighting Formulas for Spread Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-helperapi-di-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Helper/API DI Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-helperapi-score-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Helper/API SCORE Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-helperapi-n0confidence-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Helper/API N0(Confidence) Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-catalog-fallback-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 Catalog Fallback Formulas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-result-comparison-confidence-heuristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 Result-Comparison Confidence Heuristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-win-per-hand-win-per-round-ev-of-average-bet-per-100-hand-conversions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8 Win per Hand / Win per Round / EV% of Average Bet / Per-100-Hand Conversions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-statistical-confidence-and-comparison-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Statistical Confidence and Comparison Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Statistical Confidence and Comparison Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-standard-error-95-ci-on-ev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Standard Error / 95% CI on EV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-standard-error-of-ev-by-bucket-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Standard Error of EV-by-Bucket Difference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-t-critical-mean-ci-for-repeated-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 t-Critical / Mean ± CI for Repeated Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-z-score-for-run-to-run-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Z-Score for Run-to-Run Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-two-sample-t-test-for-sharpe-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Two-Sample t-Test for Sharpe Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-minimum-sample-heuristic-for-ev-precision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 Minimum Sample Heuristic for EV Precision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-qa-threshold-and-sanity-check-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. QA Threshold and Sanity-Check Formulas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. QA Threshold and Sanity-Check Formulas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-initial-pair-baseline-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Initial Pair Baseline Tolerance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-rounds-with-split-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Rounds-With-Split Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-kelly-cap-warning-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Kelly Cap Warning Threshold
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-known-semantic-drifts-you-should-audit-carefully" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Known Semantic Drifts You Should Audit Carefully
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Known Semantic Drifts You Should Audit Carefully">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-di-scaling-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 DI Scaling Drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-n0-definition-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 N0 Definition Drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-counted-risk-basis-drift-in-older-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Counted-Risk Basis Drift in Older Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-top-level-per-hand-fields-vs-risk_primary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Top-Level Per-Hand Fields vs risk_primary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-what-you-will-not-find-in-bjw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. What You Will Not Find in BJW
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-fast-search-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Fast Search Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-minimum-file-set-to-read-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Minimum File Set to Read First
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-exact-references-recorded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Exact References Recorded
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Exact References Recorded">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r1-kelly-1956" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R1. Kelly (1956)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r2-welford-1962" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R2. Welford (1962)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r3-chan-golub-and-leveque-1983" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R3. Chan, Golub, and LeVeque (1983)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r4-nistsematech-e-handbook-confidence-and-comparison-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R4. NIST/SEMATECH e-Handbook Confidence and Comparison Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="bjw-blackjackap-formula-inventory">BJW Blackjack/AP Formula Inventory<a class="headerlink" href="#bjw-blackjackap-formula-inventory" title="Permanent link">&para;</a></h1>
+<p><strong>Date</strong>: 2026-03-16<br />
+<strong>Public site note</strong>: This page mirrors the current BJW formula inventory maintained in the main project docs.</p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>This document inventories the blackjack and advantage-play formulas implemented in BJW code.</p>
+<p>For each formula family, it states:</p>
+<ul>
+<li>where the formula lives</li>
+<li>what the formula is trying to do</li>
+<li>where the inputs come from in the BJW pipeline</li>
+<li>what the variables mean</li>
+<li>what output the formula is expected to produce</li>
+<li>what terms to search for in books or online if you want to verify the underlying idea yourself</li>
+</ul>
+<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
+<p>Included:</p>
+<ul>
+<li>core simulator runtime math</li>
+<li>parallel aggregation math</li>
+<li>betting VM math</li>
+<li>result helper math</li>
+<li>validation/comparison math</li>
+<li>experiment/optimizer/reporting math that derives blackjack/AP metrics from results</li>
+<li>QA/statistical formulas that materially affect blackjack result interpretation</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>static basic-strategy/deviation tables</li>
+<li>pure formatting with no arithmetic</li>
+<li>tests that only restate formulas already implemented elsewhere</li>
+</ul>
+<h2 id="important-high-level-findings">Important High-Level Findings<a class="headerlink" href="#important-high-level-findings" title="Permanent link">&para;</a></h2>
+<ol>
+<li>BJW’s core simulator does <strong>not</strong> compute blackjack EV from closed-form house-edge formulas. It simulates rounds and measures EV/variance from outcomes.</li>
+<li>BJW’s current canonical counted-risk path is <strong>observed per-round variance</strong>, not legacy <code>chapter10</code> math.</li>
+<li>Legacy <code>chapter10</code> / <code>di_adjusted</code> variance math still exists in audit/helpers/older scripts, but it is not the canonical runtime contract on this branch.</li>
+<li>The repo currently contains more than one definition of some named metrics:</li>
+<li><code>DI</code> is sometimes <code>1000 * EV / SD</code> and sometimes plain <code>EV / SD</code>.</li>
+<li><code>N0</code> is sometimes <code>(SD / EV)^2</code> and sometimes <code>(1.96 * SD / EV)^2</code>.</li>
+<li>Older counted experiment scripts still read <code>chapter10</code> fields.</li>
+</ol>
+<p>Those semantic drifts are called out explicitly below.</p>
+<h2 id="formula-status-legend">Formula Status Legend<a class="headerlink" href="#formula-status-legend" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Canonical runtime</strong>: defines BJW’s primary simulator result contract</li>
+<li><strong>Diagnostic/legacy</strong>: retained for research, audits, or backward compatibility</li>
+<li><strong>Reporting/helper</strong>: derived outside the simulator for display or scripting</li>
+<li><strong>Statistical comparison</strong>: used to compare runs or assess confidence</li>
+</ul>
+<h2 id="how-to-use-this-document">How To Use This Document<a class="headerlink" href="#how-to-use-this-document" title="Permanent link">&para;</a></h2>
+<p>If you are trying to verify a formula yourself:</p>
+<ol>
+<li>Start from the operation index below.</li>
+<li>Jump to the canonical runtime section first if one exists.</li>
+<li>If the same name appears elsewhere, check the drift index before assuming the formulas are identical.</li>
+<li>Use the <code>Search terms</code> block in that section to look for the external concept in books, BJ Attack, CVData discussions, or online references.</li>
+</ol>
+<p>This document intentionally distinguishes:</p>
+<ul>
+<li>the formula BJW currently uses in active runtime</li>
+<li>helper/reporting formulas that only post-process results</li>
+<li>legacy or diagnostic formulas kept for audits</li>
+</ul>
+<p>When a section gives a provenance note, the intended meanings are:</p>
+<ul>
+<li><code>Standard external concept</code>: common blackjack/statistics/math idea, but this document does not yet record an exact page citation</li>
+<li><code>BJW contract choice</code>: a runtime or reporting convention BJW chose and enforces</li>
+<li><code>BJW-authored model/heuristic</code>: an explicit BJW approximation, policy model, or threshold that should not be mistaken for sourced literature</li>
+<li><code>Legacy unsourced</code>: retained for compatibility or audit only and not currently backed by a verified external citation</li>
+</ul>
+<p>When a section gives a citation-status note, the intended meanings are:</p>
+<ul>
+<li><code>Exact reference recorded</code>: this document includes a specific external source in <a href="#15-exact-references-recorded">15. Exact References Recorded</a></li>
+<li><code>No verified citation recorded</code>: this pass did not verify an exact external source for that formula or exact implementation</li>
+</ul>
+<h2 id="formula-map-by-operation">Formula Map By Operation<a class="headerlink" href="#formula-map-by-operation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Counting and count conversion: <a href="#11-running-count-tag-update">1.1 Running Count Tag Update</a>, <a href="#13-decks-remaining">1.3 Decks Remaining</a>, <a href="#14-deck-quantization">1.4 Deck Quantization</a>, <a href="#15-true-count">1.5 True Count</a>, <a href="#16-tc-bucket-rounding-and-clamping">1.6 TC Bucket Rounding and Clamping</a></li>
+<li>Wonging and table-entry logic: <a href="#18-wonging-entryexit-thresholds">1.8 Wonging Entry/Exit Thresholds</a>, <a href="#19-wonging-round-accounting">1.9 Wonging Round Accounting</a>, <a href="#110-penetration-to-cut-card-conversion">1.10 Penetration to Cut-Card Conversion</a></li>
+<li>Kelly betting: <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a>, <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a>, <a href="#24-kelly-fraction-and-bet-size">2.4 Kelly Fraction and Bet Size</a>, <a href="#25-kelly-edge-table-discretization">2.5 Kelly Edge-Table Discretization</a>, <a href="#103-kelly-cap-warning-threshold">10.3 Kelly Cap Warning Threshold</a></li>
+<li>Progressions and non-count betting systems: <a href="#21-count-spread-lookup">2.1 Count Spread Lookup</a>, <a href="#26-progression-bet-formulas">2.6 Progression Bet Formulas</a>, <a href="#27-state-machine-special-calculation-total_loss--040">2.7 State-Machine Special Calculation</a></li>
+<li>Blackjack hand and round settlement: <a href="#31-hand-total-with-ace-adjustment">3.1 Hand Total with Ace Adjustment</a>, <a href="#32-dealer-play-rule">3.2 Dealer Play Rule</a>, <a href="#37-insurance-settlement">3.7 Insurance Settlement</a>, <a href="#38-insurance-effective-probability-and-ev">3.8 Insurance Effective Probability and EV</a>, <a href="#310-natural-surrender-winlosspush-settlement">3.10 Natural, Surrender, Win/Loss/Push Settlement</a></li>
+<li>Canonical performance and risk metrics: <a href="#41-observed-sample-variance-via-welford">4.1 Observed Sample Variance via Welford</a>, <a href="#42-ev-per-hand-per-round-per-initial-bet-and-average-bet">4.2 EV per Hand, per Round, per Initial Bet, and Average Bet</a>, <a href="#43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection</a>, <a href="#44-score">4.4 SCORE</a>, <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a>, <a href="#46-canonical-runtime-n0">4.6 Canonical Runtime N0</a>, <a href="#47-risk-of-ruin-ror-approximation">4.7 Risk of Ruin (RoR) Approximation</a></li>
+<li>Parallel aggregation and contract sync: <a href="#51-worker-result-pooled-variance">5.1 Worker-Result Pooled Variance</a>, <a href="#43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection</a></li>
+<li>Per-bucket and decision telemetry: <a href="#61-ev-by-bucket-variance">6.1 EV-by-Bucket Variance</a>, <a href="#62-exact-decision-variable-sd">6.2 Exact Decision Variable SD</a></li>
+<li>Legacy variance paths and audits: <a href="#71-legacy-chapter10-variance-decomposition">7.1 Legacy <code>chapter10</code> Variance Decomposition</a>, <a href="#72-legacy-di_adjusted-reconstruction">7.2 Legacy <code>di_adjusted</code> Reconstruction</a>, <a href="#73-rms-sd-validation-heuristic">7.3 RMS SD Validation Heuristic</a></li>
+<li>Helpers, optimizers, and reweighting: <a href="#81-sharpe-like-ratio">8.1 Sharpe-Like Ratio</a>, <a href="#82-reweighting-formulas-for-spread-optimization">8.2 Reweighting Formulas for Spread Optimization</a>, <a href="#83-helperapi-di-formula">8.3 Helper/API DI Formula</a>, <a href="#84-helperapi-score-formula">8.4 Helper/API SCORE Formula</a>, <a href="#85-helperapi-n0confidence-formula">8.5 Helper/API N0(Confidence) Formula</a></li>
+<li>Statistical comparison and QA gates: <a href="#91-standard-error--confidence-interval-for-ev">9.1 Standard Error / Confidence Interval</a>, <a href="#94-z-score-for-run-to-run-comparison">9.4 Z-Score for Run-to-Run Comparison</a>, <a href="#101-initial-pair-baseline-tolerance">10.1 Initial Pair Baseline Tolerance</a></li>
+</ul>
+<h2 id="same-name-different-formula-index">Same Name, Different Formula Index<a class="headerlink" href="#same-name-different-formula-index" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>DI</code>: canonical runtime <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a>, helper copy <a href="#83-helperapi-di-formula">8.3 Helper/API DI Formula</a>, drift summary <a href="#111-di-scaling-drift">11.1 DI Scaling Drift</a></li>
+<li><code>N0</code>: canonical runtime <a href="#46-canonical-runtime-n0">4.6 Canonical Runtime N0</a>, confidence-style helper <a href="#85-helperapi-n0confidence-formula">8.5 Helper/API N0(Confidence) Formula</a>, drift summary <a href="#112-n0-definition-drift">11.2 N0 Definition Drift</a></li>
+<li>Counted risk basis: canonical contract <a href="#43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection</a>, old counted scripts <a href="#113-counted-risk-basis-drift-in-older-scripts">11.3 Counted-Risk Basis Drift in Older Scripts</a>, top-level field mismatch <a href="#114-top-level-per-hand-fields-vs-risk_primary">11.4 Top-Level Per-Hand Fields vs <code>risk_primary</code></a></li>
+<li>Legacy variance blocks: diagnostic only <a href="#71-legacy-chapter10-variance-decomposition">7.1 Legacy <code>chapter10</code> Variance Decomposition</a>, <a href="#72-legacy-di_adjusted-reconstruction">7.2 Legacy <code>di_adjusted</code> Reconstruction</a></li>
+<li>Kelly inputs vs Kelly output: edge model <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a>, variance model <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a>, final bet formula <a href="#24-kelly-fraction-and-bet-size">2.4 Kelly Fraction and Bet Size</a></li>
+</ul>
+<h2 id="1-counting-and-decision-variable-formulas">1. Counting and Decision-Variable Formulas<a class="headerlink" href="#1-counting-and-decision-variable-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section citation status</strong></p>
+<p>No verified citation recorded section-wide. These are BJW implementations of standard counting conventions and manifest semantics, but this pass did not attach exact external references for each convention.</p>
+<h3 id="11-running-count-tag-update">1.1 Running Count Tag Update<a class="headerlink" href="#11-running-count-tag-update" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>RC_new = RC_old + tag(exposed_card)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>countTag(...)</code>, <code>revealCard(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code> <code>countTag(...)</code>, <code>toCountTag(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Updates the running count whenever a card becomes visible to the player.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>RC</code>: current running count</li>
+<li><code>tag(card)</code>: count-system tag value for the exposed card</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>RC</code> is simulator state carried through the shoe</li>
+<li>tag values come from <code>manifest.counting.card_values</code></li>
+<li>Red Seven / suit-aware tags are resolved from the actual card rank+suit</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<p>An integer or fractional running count, depending on the count system definition.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>running count update</code></li>
+<li><code>count tag values</code></li>
+<li><code>Hi-Lo tags</code></li>
+<li><code>KO tags</code></li>
+<li><code>Red Seven tag values</code></li>
+</ul>
+<h3 id="12-theoretical-running-count-bounds">1.2 Theoretical Running Count Bounds<a class="headerlink" href="#12-theoretical-running-count-bounds" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>RC_max = Σ max(0, tag_i)
+RC_min = Σ min(0, tag_i)
+RC_end = RC_max + RC_min
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/configurator/transpilers/betting_to_bvm.py</code> <code>_calculate_rc_bounds(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Computes the theoretical min/max/end-of-shoe running count for a count system and deck count.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>tag_i</code>: tag value of each physical card in the shoe</li>
+<li><code>RC_end</code>: total shoe unbalance</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>tag_i</code> comes from the count-system tag map under <code>data/rules/counting/...</code></li>
+<li>the “physical cards in the shoe” come from the configured deck count and shoe composition used by the transpiler when it enumerates all cards</li>
+<li><code>RC_end</code> is the sum of all shoe tags, so for balanced systems it should end near <code>0</code>, while for unbalanced systems it represents the system’s full-shoe unbalance</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This section is not reading live simulator state. It is doing a static whole-shoe audit of the counting system definition.</p>
+<p><strong>Expected output</strong></p>
+<p>The minimum possible RC, maximum possible RC, and final end-of-shoe RC if the whole shoe were revealed.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>running count bounds</code></li>
+<li><code>end of shoe running count</code></li>
+<li><code>unbalanced count shoe end</code></li>
+<li><code>key count</code></li>
+</ul>
+<h3 id="13-decks-remaining">1.3 Decks Remaining<a class="headerlink" href="#13-decks-remaining" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>decks_remaining = cards_remaining / 52
+</code></pre></div>
+<p>or, when divisor basis is configured as cards dealt:</p>
+<div class="highlight"><pre><span></span><code>decks_remaining = decks_total - quantize(cards_dealt / 52)
+</code></pre></div>
+<p>with a lower clamp:</p>
+<div class="highlight"><pre><span></span><code>decks_remaining = max(0.0001, decks_remaining)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>decksRemaining(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code> <code>decksRemaining(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Provides the divisor for true-count conversion and several diagnostic outputs.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>cards_remaining</code></li>
+<li><code>cards_dealt</code></li>
+<li><code>decks_total</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>cards_remaining = shoe.length - shoePtr</code></li>
+<li><code>cards_dealt = shoePtr</code></li>
+<li><code>decks_total = manifest.environment.ruleset.decks</code></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This is the raw shoe-depth input before the true-count formula in <a href="#15-true-count">1.5 True Count</a>.</p>
+<p><strong>Expected output</strong></p>
+<p>A positive estimate of decks remaining, optionally quantized.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>decks remaining</code></li>
+<li><code>true count divisor</code></li>
+<li><code>half deck estimation</code></li>
+<li><code>quarter deck estimation</code></li>
+</ul>
+<h3 id="14-deck-quantization">1.4 Deck Quantization<a class="headerlink" href="#14-deck-quantization" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>full_deck:    round(x)
+half_deck:    round(2x) / 2
+quarter_deck: round(4x) / 4
+continuous:   x
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code> <code>quantizeDecksRemaining(...)</code></li>
+<li>used by <code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Replicates common card-counter deck-estimation granularity before true-count division.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>x</code>: continuous decks remaining or decks dealt</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>x</code> is produced immediately before quantization from either:</li>
+<li><code>cards_remaining / 52</code>, or</li>
+<li><code>cards_dealt / 52</code></li>
+<li>which one BJW uses depends on the divisor-basis path described in <a href="#13-decks-remaining">1.3 Decks Remaining</a></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This section is only about how BJW rounds deck estimates. It does not itself choose between cards-remaining and cards-dealt semantics.</p>
+<p><strong>Expected output</strong></p>
+<p>A quantized deck estimate consistent with the configured divisor mode.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>half deck true count</code></li>
+<li><code>quarter deck true count</code></li>
+<li><code>deck estimation granularity</code></li>
+</ul>
+<h3 id="15-true-count">1.5 True Count<a class="headerlink" href="#15-true-count" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>TC = RC / decks_remaining
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>trueCount(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code> <code>trueCount(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Converts running count to a depth-normalized count for balanced systems and TC-based policies.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>RC</code>: running count</li>
+<li><code>decks_remaining</code>: result of the current divisor policy</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>RC</code> comes from the running count state updated by <a href="#11-running-count-tag-update">1.1 Running Count Tag Update</a></li>
+<li><code>decks_remaining</code> comes from <a href="#13-decks-remaining">1.3 Decks Remaining</a>, including any configured quantization from <a href="#14-deck-quantization">1.4 Deck Quantization</a></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This is the continuous true count before bucket rounding and clamping in <a href="#16-tc-bucket-rounding-and-clamping">1.6 TC Bucket Rounding and Clamping</a>.</p>
+<p><strong>Expected output</strong></p>
+<p>A continuous true count before integer bucketing/clamping.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>true count formula</code></li>
+<li><code>running count divided by decks remaining</code></li>
+</ul>
+<h3 id="16-tc-bucket-rounding-and-clamping">1.6 TC Bucket Rounding and Clamping<a class="headerlink" href="#16-tc-bucket-rounding-and-clamping" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>nearest: round(TC)
+away_from_zero:
+  if TC &gt;= 0: floor(TC + 0.5)
+  else:       ceil(TC - 0.5)
+
+bucket = clamp(raw_bucket, bucket_min, bucket_max)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code> <code>calculateBucketWithMode(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Maps continuous TC into integer bins for bet spreads, EV-by-bucket, and deviation thresholds.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>TC</code></li>
+<li><code>bucket_min</code>, <code>bucket_max</code></li>
+<li><code>rounding_mode</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>TC</code> is the continuous value from <a href="#15-true-count">1.5 True Count</a> or an insurance-specific TC path when insurance bucketing is active</li>
+<li><code>bucket_min</code> and <code>bucket_max</code> come from <code>manifest.bucketing.range.min/max</code> (mirrored from <code>counting.bucketing.range</code>)</li>
+<li><code>rounding_mode</code> comes from <code>counting.tc_bucket_rounding_mode</code></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This is the stage where BJW turns a continuous count into the integer decision variable actually used by spreads, deviations, and bucket telemetry.</p>
+<p><strong>Expected output</strong></p>
+<p>A final integer bucket used by policies and telemetry.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>true count rounding</code></li>
+<li><code>round away from zero</code></li>
+<li><code>count bucket clamp</code></li>
+</ul>
+<h3 id="17-depth-adjusted-running-count-bucket">1.7 Depth-Adjusted Running Count Bucket<a class="headerlink" href="#17-depth-adjusted-running-count-bucket" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime for systems that use depth adjustment</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>adjustment = base + multiplier * decks_played
+adjusted_rc_bucket = round(RC - adjustment)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>calculateBucket(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Allows RC-based systems with a depth adjustment to bucket the same way their betting policy decides.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>RC</code></li>
+<li><code>base</code></li>
+<li><code>multiplier</code></li>
+<li><code>decks_played = shoePtr / 52</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>RC</code> is the live running count state</li>
+<li><code>base</code> and <code>multiplier</code> come from <code>bucket_spread.depth_adjustment</code> in the BVM produced by the betting-policy transpiler</li>
+<li><code>decks_played = shoePtr / 52</code></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This is a betting-policy alignment step. BJW uses it so EV bucketing and bet-spread matching are based on the same adjusted RC decision variable.</p>
+<p><strong>Expected output</strong></p>
+<p>An integer depth-adjusted RC bucket.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>running count depth adjustment</code></li>
+<li><code>warm count</code></li>
+<li><code>effective running count</code></li>
+</ul>
+<h3 id="18-wonging-entryexit-thresholds">1.8 Wonging Entry/Exit Thresholds<a class="headerlink" href="#18-wonging-entryexit-thresholds" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>enter if TC &gt;= tc_ge or RC &gt;= rc_ge
+exit  if TC &lt;= tc_le or RC &lt;= rc_le
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>shouldEnterTable(...)</code>, <code>shouldExitTable(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Controls back-counting / wonging in and out of the game.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>wong in threshold</code></li>
+<li><code>wong out threshold</code></li>
+<li><code>back-counting entry count</code></li>
+</ul>
+<h3 id="19-wonging-round-accounting">1.9 Wonging Round Accounting<a class="headerlink" href="#19-wonging-round-accounting" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>total_rounds_observed += 1 each time entry/exit is rechecked
+
+if wongingActive:
+  rounds_played += 1
+else:
+  rounds_sat_out += 1
+
+pct_time_at_table = 100 * rounds_played / total_rounds_observed
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> wonging state update inside <code>playOneRound(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code> derived recomputation of <code>pct_time_at_table</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Separates rounds the player actually plays from rounds merely observed while back-counting.</p>
+<p><strong>Important note</strong></p>
+<ul>
+<li>If <code>when_out = sit_out</code> or <code>when_out = reshuffle</code>, the observed round can increment wonging counters without incrementing <code>round_summary.rounds</code>.</li>
+<li>If <code>when_out = flat_min</code>, the round is still played and contributes to normal round/hand EV and variance.</li>
+</ul>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>wonging rounds played vs observed</code></li>
+<li><code>back-counting sit-out accounting</code></li>
+<li><code>time at table percentage</code></li>
+</ul>
+<h3 id="110-penetration-to-cut-card-conversion">1.10 Penetration to Cut-Card Conversion<a class="headerlink" href="#110-penetration-to-cut-card-conversion" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>penetration_fraction = penetration_pct / 100
+cut_card = max(1, floor(shoe_size_cards * penetration_fraction))
+
+start new shoe before next round if shoePtr &gt;= cut_card
+</code></pre></div>
+<p>with the consistency constraint:</p>
+<div class="highlight"><pre><span></span><code>burn_cards &lt; cut_card
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> penetration parsing and <code>cutCard</code> setup</li>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> pre-round reshuffle check in <code>playOneRound(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Turns manifest penetration into the actual deepest card position BJW will deal before reshuffling.</p>
+<p><strong>Important note</strong></p>
+<p>Penetration does not enter EV through a closed-form blackjack formula. It changes which late-shoe count states are reachable, which then changes bucket occupancy, betting opportunities, and observed EV/variance.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>blackjack penetration cut card formula</code></li>
+<li><code>cut card position shoe game</code></li>
+<li><code>penetration effect on true count distribution</code></li>
+</ul>
+<h2 id="2-betting-formulas">2. Betting Formulas<a class="headerlink" href="#2-betting-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section citation status</strong></p>
+<p>Mixed. Some formulas below trace to general Kelly literature; others are BJW policy semantics or BJW-authored models with no verified external citation recorded for the exact implementation.</p>
+<h3 id="21-count-spread-lookup">2.1 Count Spread Lookup<a class="headerlink" href="#21-count-spread-lookup" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<p>No algebraic formula. BJW range-matches the current bucket against authored spread ranges:</p>
+<div class="highlight"><pre><span></span><code>if lo &lt;= bucket &lt;= hi: use units_for_that_range
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>unitsFromCountBasedBetPolicy(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Implements ordinary RC- or TC-tiered bet ramps.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW contract choice. This is the simulator’s implementation of an authored spread schedule, not a standalone blackjack theorem.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. This is a BJW range-matching execution rule for authored spread schedules.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>bet spread by true count</code></li>
+<li><code>tiered spread</code></li>
+<li><code>count-based bet ramp</code></li>
+</ul>
+<h3 id="22-kelly-edge-model">2.2 Kelly Edge Model<a class="headerlink" href="#22-kelly-edge-model" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime when a Kelly policy is used</p>
+<p><strong>Formula</strong></p>
+<p>Table-driven option:</p>
+<div class="highlight"><pre><span></span><code>edge = edge_table[count_index]
+</code></pre></div>
+<p>Fallback slope/cap option:</p>
+<div class="highlight"><pre><span></span><code>edge = min(max(0, count_value * edge_slope), edge_cap)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code> <code>calculateKellyUnits(...)</code></li>
+<li>Kelly params produced by <code>src/python/configurator/transpilers/betting_to_bvm.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces a modeled per-hand edge for Kelly bet sizing.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW-authored model/heuristic. Kelly bet sizing itself is an external concept, but this particular edge parameterization and its defaults are authored policy/model inputs inside BJW rather than a verified closed-form blackjack edge law.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for this exact BJW edge model.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>count_value</code>: TC for balanced systems, RC/effective count for unbalanced systems</li>
+<li><code>edge_slope</code> / <code>edge_cap</code></li>
+<li><code>edge_table</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>count_value</code> comes from <code>bucket_spread.input_var</code> in the active BVM context:</li>
+<li>balanced systems usually feed TC</li>
+<li>unbalanced systems usually feed RC or an effective RC-style value</li>
+<li><code>edge_table</code> comes from <code>manifest.betting.policy_vm.bucket_spread.kelly_params.edge_table</code></li>
+<li>it is a lookup table keyed by integerized count values after the discretization rule in <a href="#25-kelly-edge-table-discretization">2.5 Kelly Edge-Table Discretization</a></li>
+<li><code>edge_slope</code> comes from <code>kelly_params.edge_per_tc</code> if present, otherwise <code>kelly_params.edge_slope</code>, otherwise BJW falls back to <code>0.005</code></li>
+<li><code>edge_cap</code> comes from <code>kelly_params.edge_cap</code>, otherwise BJW falls back to <code>0.025</code></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<ul>
+<li><code>edge_table</code> means “for this count bucket, assume this per-unit edge”</li>
+<li><code>edge_slope</code> means “increase modeled edge linearly as count rises”</li>
+<li><code>edge_cap</code> means “stop increasing the modeled edge beyond this ceiling”</li>
+</ul>
+<p>These are authored model parameters, not values inferred from the current simulation at runtime.</p>
+<p><strong>Expected output</strong></p>
+<p>A modeled edge in units-per-unit-bet, used only for Kelly sizing.</p>
+<p><strong>Related formulas</strong></p>
+<ul>
+<li>Kelly variance term: <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a></li>
+<li>Kelly bet conversion: <a href="#24-kelly-fraction-and-bet-size">2.4 Kelly Fraction and Bet Size</a></li>
+<li>Edge-table lookup rule: <a href="#25-kelly-edge-table-discretization">2.5 Kelly Edge-Table Discretization</a></li>
+<li>Kelly saturation warning: <a href="#103-kelly-cap-warning-threshold">10.3 Kelly Cap Warning Threshold</a></li>
+</ul>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Kelly blackjack edge model</code></li>
+<li><code>edge per true count</code></li>
+<li><code>edge cap</code></li>
+</ul>
+<h3 id="23-kelly-variance-model">2.3 Kelly Variance Model<a class="headerlink" href="#23-kelly-variance-model" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime when a Kelly policy is used</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>variance = clamp(
+  variance_base + max(0, count_value) * variance_tc_multiplier,
+  1.0,
+  3.0
+)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code> <code>calculateKellyUnits(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Provides the variance term in the Kelly fraction model.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW-authored model/heuristic. The Kelly denominator concept is external, but BJW’s count-dependent variance parameterization and clamps are implementation/model choices.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for this exact BJW variance model.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>variance_base</code></li>
+<li><code>variance_tc_multiplier</code></li>
+<li><code>count_value</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>variance_base</code> comes from <code>kelly_params.variance_base</code>, otherwise <code>kelly_params.base_variance</code>, otherwise BJW falls back to <code>1.3</code></li>
+<li><code>variance_tc_multiplier</code> comes from <code>kelly_params.variance_tc_multiplier</code>, otherwise BJW falls back to <code>0.02</code></li>
+<li><code>count_value</code> is the same betting-context input described in <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<ul>
+<li><code>variance_base</code> is the modeled baseline variance at neutral or low counts</li>
+<li><code>variance_tc_multiplier</code> says how much modeled variance increases as count rises</li>
+<li>the final <code>clamp(..., 1.0, 3.0)</code> is a BJW guardrail to keep the Kelly denominator in a bounded range</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<p>A positive modeled variance estimate for the current count.</p>
+<p><strong>Related formulas</strong></p>
+<ul>
+<li>Kelly edge model: <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a></li>
+<li>Kelly bet conversion: <a href="#24-kelly-fraction-and-bet-size">2.4 Kelly Fraction and Bet Size</a></li>
+</ul>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Kelly variance blackjack</code></li>
+<li><code>variance per true count</code></li>
+<li><code>fractional Kelly variance estimate</code></li>
+</ul>
+<h3 id="24-kelly-fraction-and-bet-size">2.4 Kelly Fraction and Bet Size<a class="headerlink" href="#24-kelly-fraction-and-bet-size" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime when a Kelly policy is used</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>kelly_fraction = edge / variance
+adjusted_kelly = kelly_fraction * fraction
+raw_units = bankroll_scale * adjusted_kelly
+units = clamp(round(raw_units), table_min, table_max)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code> <code>calculateKellyUnits(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Turns the modeled edge and variance into an actual bet size.</p>
+<p><strong>Provenance status</strong></p>
+<p>Mixed. The <code>f = edge / variance</code> Kelly structure is a standard external concept; the specific edge/variance inputs feeding it in BJW come from the BJW-authored models in <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a> and <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a>.</p>
+<p><strong>Citation status</strong></p>
+<p>Exact reference recorded for the general Kelly concept: <a href="#r1-kelly-1956">R1</a>. No verified citation recorded for BJW’s exact blackjack notation and parameterization in this section.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>edge</code></li>
+<li><code>variance</code></li>
+<li><code>fraction</code>: fractional Kelly multiplier</li>
+<li><code>bankroll_scale</code>: Kelly bankroll sizing scale</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>edge</code> is the output of <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a></li>
+<li><code>variance</code> is the output of <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a></li>
+<li><code>fraction</code> comes from <code>kelly_params.fraction</code> or <code>kelly_params.fractional_kelly</code></li>
+<li><code>bankroll_scale</code> comes from <code>kelly_params.bankroll_scale</code>, with BJW defaulting if it is omitted</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p><code>bankroll_scale</code> here is a Kelly model parameter carried in the policy VM, not the live bankroll balance being tracked by bankroll-stop or bankroll-goal features.</p>
+<p><strong>Related formulas</strong></p>
+<ul>
+<li>Kelly edge model: <a href="#22-kelly-edge-model">2.2 Kelly Edge Model</a></li>
+<li>Kelly variance model: <a href="#23-kelly-variance-model">2.3 Kelly Variance Model</a></li>
+<li>Kelly edge-table discretization: <a href="#25-kelly-edge-table-discretization">2.5 Kelly Edge-Table Discretization</a></li>
+</ul>
+<p><strong>Expected output</strong></p>
+<p>An integer bet size in BJW units.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Kelly criterion</code></li>
+<li><code>fractional Kelly</code></li>
+<li><code>f = edge / variance</code></li>
+</ul>
+<h3 id="25-kelly-edge-table-discretization">2.5 Kelly Edge-Table Discretization<a class="headerlink" href="#25-kelly-edge-table-discretization" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime when a Kelly edge table is used</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>count_index =
+  floor(count) if count &gt;= 0
+  ceil(count)  if count &lt; 0
+</code></pre></div>
+<p>then clamp to the nearest lower available table key.</p>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code> <code>getEdgeFromTable(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Maps a continuous count to a discrete lookup key in an edge table.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. This is a BJW lookup/discretization rule for an authored Kelly edge table.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>discretized true count lookup</code></li>
+<li><code>floor positive ceil negative count</code></li>
+</ul>
+<h3 id="26-progression-bet-formulas">2.6 Progression Bet Formulas<a class="headerlink" href="#26-progression-bet-formulas" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime for progression policies</p>
+<p><strong>Formula</strong></p>
+<p>Martingale fast path:</p>
+<div class="highlight"><pre><span></span><code>units = base_units * 2^current_step
+</code></pre></div>
+<p>General BVM progression path:</p>
+<div class="highlight"><pre><span></span><code>units = next_units
+</code></pre></div>
+<p>where <code>next_units</code> is produced by progression-specific pre-round actions such as:</p>
+<div class="highlight"><pre><span></span><code>sequence progression: next_units = sequence[current_step]
+Labouchere:           next_units = first(sequence) + last(sequence)
+percentage progression: next_units = pct(prev_bet)
+</code></pre></div>
+<p>then clamp to table max/min.</p>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code> <code>getProgressionUnits(...)</code></li>
+<li>progression transpilation in <code>src/python/configurator/transpilers/betting_to_bvm.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Implements Martingale, sequence progressions like <code>1-3-2-6</code>, Labouchere-style systems, and percentage progressions through the same VM.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW contract choice. These are implementations of authored betting-policy semantics carried in the BVM, not a single externally sourced blackjack formula.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. This section documents BJW betting-policy execution semantics rather than a single literature formula.</p>
+<p><strong>Important note</strong></p>
+<p>The <code>2^current_step</code> expression is only the Martingale-specific fast path. It is not the generic formula for every BJW progression policy.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Martingale</code></li>
+<li><code>doubling progression</code></li>
+<li><code>1-3-2-6 betting progression</code></li>
+<li><code>Labouchere</code></li>
+</ul>
+<h3 id="27-state-machine-special-calculation-total_loss-040">2.7 State-Machine Special Calculation (<code>total_loss * 0.40</code>)<a class="headerlink" href="#27-state-machine-special-calculation-total_loss-040" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime for authored state-machine policies, but repo-authored rather than literature-backed</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>units = max(1, floor(total_loss * 0.40))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>unitsFromAuthoredBetPolicy(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Implements a custom “bet 40% of accumulated loss” rule for certain authored policies.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>total_loss</code>: state-machine-tracked cumulative loss</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>total_loss</code> is the authored state-machine loss accumulator maintained in BJW bet-policy state</li>
+<li>in the BVM-based path the parallel state variable is <code>total_loss_units</code></li>
+<li>this rule is only activated when an authored state-machine policy names the matching special calculation</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>This is repo-authored betting logic, not a generic blackjack theorem or a simulator-wide bankroll formula.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. This is a repo-authored state-machine rule rather than a verified external formula.</p>
+<p><strong>Expected output</strong></p>
+<p>An integer bet size that scales with accumulated loss.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>loss-recovery betting</code></li>
+<li><code>40 percent of total loss betting</code></li>
+</ul>
+<h2 id="3-blackjack-engine-and-settlement-formulas">3. Blackjack Engine and Settlement Formulas<a class="headerlink" href="#3-blackjack-engine-and-settlement-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section provenance note</strong></p>
+<p>Most formulas in this section are standard blackjack rule/accounting mechanics or straightforward arithmetic identities over settled outcomes. This document does not yet carry exact book/page citations for each such rule.</p>
+<p><strong>Section citation status</strong></p>
+<p>No verified citation recorded section-wide. Most formulas here are direct consequences of blackjack rules or direct arithmetic over settled outcomes.</p>
+<h3 id="31-hand-total-with-ace-adjustment">3.1 Hand Total with Ace Adjustment<a class="headerlink" href="#31-hand-total-with-ace-adjustment" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>sum = Σ card_values with Ace initially counted as 11
+while sum &gt; 21 and aces &gt; 0:
+  sum -= 10
+  aces -= 1
+soft = (remaining_aces_counted_as_11 &gt; 0)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>handTotal(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Computes hard/soft hand totals for play, dealer rules, and settlement.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>blackjack hand total aces</code></li>
+<li><code>soft hand calculation</code></li>
+</ul>
+<h3 id="32-dealer-play-rule">3.2 Dealer Play Rule<a class="headerlink" href="#32-dealer-play-rule" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>if total &gt; 17: stand
+if total &lt; 17: hit
+if total == 17:
+  hit on soft 17 only when H17 is enabled
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>dealerPlays(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Executes dealer drawing rules under H17/S17.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>dealer hits soft 17</code></li>
+<li><code>S17 H17 rule</code></li>
+</ul>
+<h3 id="33-blackjack-detection">3.3 Blackjack Detection<a class="headerlink" href="#33-blackjack-detection" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>is_blackjack = (hand_length == 2) and (hand_total == 21)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>isBlackjack(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Identifies naturals for peek/natural settlement.</p>
+<h3 id="34-double-eligibility">3.4 Double Eligibility<a class="headerlink" href="#34-double-eligibility" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>must have exactly 2 cards
+if after split:
+  DAS must be allowed
+  if split aces: double_after_split_aces must be allowed
+if DOA: allowed
+else: only total 10 or 11
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>canDouble(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Applies table rules to doubling decisions.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>double on any two</code></li>
+<li><code>double 10 or 11 only</code></li>
+<li><code>DAS</code></li>
+</ul>
+<h3 id="35-surrender-eligibility">3.5 Surrender Eligibility<a class="headerlink" href="#35-surrender-eligibility" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>surrender_allowed and (not after_split or surrender_after_split_allowed)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>canSurrender(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Applies late-surrender rules.</p>
+<h3 id="36-insurance-decision-threshold">3.6 Insurance Decision Threshold<a class="headerlink" href="#36-insurance-decision-threshold" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<p>Policy-threshold form:</p>
+<div class="highlight"><pre><span></span><code>take insurance if bucket &gt;= threshold
+</code></pre></div>
+<p>with RC- or TC-based authored strings like <code>dealer_upcard:A:TC&gt;=3</code>.</p>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>shouldTakeInsurance(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Applies authored insurance thresholds.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>insurance index</code></li>
+<li><code>insurance true count threshold</code></li>
+<li><code>insurance running count threshold</code></li>
+</ul>
+<h3 id="37-insurance-settlement">3.7 Insurance Settlement<a class="headerlink" href="#37-insurance-settlement" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>insurance_bet = main_bet / 2
+if dealer_has_blackjack:
+  payout = 2 * insurance_bet
+  net = +2 * insurance_bet   (profit-only tracking)
+else:
+  payout = 0
+  net = -insurance_bet
+</code></pre></div>
+<p>summary-level corrected net:</p>
+<div class="highlight"><pre><span></span><code>insurance_net_units = 1.5 * payout_units - bet_units
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>settleInsuranceBet(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> summary finalization</li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Tracks insurance separately from the main hand and then centralizes net reporting.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>payout_units</code>: profit-only 2:1 payout accumulation</li>
+<li><code>bet_units</code>: total insurance stakes</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>payout_units</code> comes from <code>counters.insurance_payout_units</code>, which is incremented in <code>settleInsuranceBet(...)</code> only on winning insurance events</li>
+<li><code>bet_units</code> comes from <code>counters.insurance_bet_units</code>, which is incremented on every insurance bet regardless of outcome</li>
+<li>both counters are then combined during summary finalization to produce <code>insurance_net_units</code></li>
+</ul>
+<p><strong>Why the summary uses <code>1.5 * payout_units - bet_units</code></strong></p>
+<p>At runtime, winning insurance payouts are tracked as profit-only <code>2 * bet</code>, not returned stake plus profit.</p>
+<p>If <code>win_bet_units</code> is the total insurance stake on winning events:</p>
+<div class="highlight"><pre><span></span><code>payout_units = 2 * win_bet_units
+win_bet_units = payout_units / 2
+
+true_net
+  = (+2 * win_bet_units) - (loss_bet_units)
+  = (+2 * win_bet_units) - (bet_units - win_bet_units)
+  = 3 * win_bet_units - bet_units
+  = 1.5 * payout_units - bet_units
+</code></pre></div>
+<p>So the <code>1.5</code> coefficient is not a blackjack payoff rule by itself; it is the algebra needed to reconstruct total insurance net from profit-only payout tracking plus total stake.</p>
+<p><strong>Expected output</strong></p>
+<p>Insurance wins/losses, net units, and derived insurance QA metrics.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>insurance 2:1 payout</code></li>
+<li><code>insurance side bet blackjack</code></li>
+</ul>
+<h3 id="38-insurance-effective-probability-and-ev">3.8 Insurance Effective Probability and EV<a class="headerlink" href="#38-insurance-effective-probability-and-ev" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime for insurance diagnostics</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>effective_p = (payout_units / 2) / bet_units
+ev_per_unit = 3 * effective_p - 1
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> insurance bucket outputs</li>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>debug.insurance_qa</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Reconstructs the implied win probability and EV of insurance from observed bucket results.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>effective_p</code>: estimated probability dealer hole card is ten, inferred from payouts</li>
+<li><code>ev_per_unit</code>: expected profit per unit of insurance stake</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>effective_p</code> is reconstructed from observed insurance bucket telemetry using the bucket’s <code>payout_units</code> and <code>bet_units</code></li>
+<li>those bucket-level inputs come from the same insurance settlement counters described in <a href="#37-insurance-settlement">3.7 Insurance Settlement</a></li>
+<li><code>ev_per_unit</code> is then derived from that reconstructed <code>effective_p</code></li>
+</ul>
+<p><strong>Why <code>3p - 1</code></strong></p>
+<p>Insurance pays +2 on a win and -1 on a loss:</p>
+<div class="highlight"><pre><span></span><code>EV = 2p + (-1)(1 - p) = 3p - 1
+</code></pre></div>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>insurance EV 3p - 1</code></li>
+<li><code>insurance break-even 1/3</code></li>
+</ul>
+<h3 id="39-insurance-break-even-calibration">3.9 Insurance Break-Even Calibration<a class="headerlink" href="#39-insurance-break-even-calibration" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime for diagnostics</p>
+<p><strong>Formula</strong></p>
+<p>Simple calibration:</p>
+<p><div class="highlight"><pre><span></span><code>threshold = 1/3 + margin
+</code></pre></div>
+with current simple-calibration default:</p>
+<ul>
+<li><code>margin = 0.00</code></li>
+</ul>
+<p>Monotone-safe calibration:</p>
+<div class="highlight"><pre><span></span><code>threshold = 1/3 + margin
+peff[i] &gt;= peff[i-1] - epsilon
+eligible if insured_events &gt;= min_events or bet_units &gt;= min_bet_units
+</code></pre></div>
+<p>with current monotone-safe defaults:</p>
+<ul>
+<li><code>margin = 0.01</code></li>
+<li><code>epsilon = 0.005</code></li>
+<li><code>min_events = 500</code></li>
+<li><code>min_bet_units = 1000</code></li>
+</ul>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>computeInsuranceCalibration(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>computeMonotoneSafeCalibration(...)</code></li>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>checkMonotonicity(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Builds recommended insurance thresholds from observed bucket profitability.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW-authored model/heuristic. The <code>1/3</code> break-even point is a standard insurance concept, but the margin, monotonicity rule, event thresholds, and monotone-safe construction are BJW diagnostic heuristics.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for BJW’s exact calibration heuristic.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>insurance break-even probability one third</code></li>
+<li><code>insurance threshold calibration</code></li>
+<li><code>monotonic insurance index</code></li>
+</ul>
+<h3 id="310-natural-surrender-winlosspush-settlement">3.10 Natural, Surrender, Win/Loss/Push Settlement<a class="headerlink" href="#310-natural-surrender-winlosspush-settlement" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>player natural result = blackjack_payout * bet
+surrender result = -0.5 * base_bet
+regular win = +wager
+regular loss = -wager
+push = 0
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> natural handling and hand settlement</li>
+<li>shadow-action settlement inside decision telemetry</li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces the actual round/hand PnL the rest of BJW summarizes.</p>
+<p><strong>Important note</strong></p>
+<p><code>blackjack_payout</code> is read from <code>manifest.payouts.blackjack</code>.</p>
+<p>Common values are:</p>
+<ul>
+<li><code>1.5</code> for <code>3:2</code></li>
+<li><code>1.2</code> for <code>6:5</code></li>
+</ul>
+<p>BJW does not hardcode only those two values; it uses the numeric payout carried in the manifest.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>blackjack 3:2 payout</code></li>
+<li><code>blackjack 6:5 payout</code></li>
+<li><code>late surrender half bet</code></li>
+<li><code>push zero outcome</code></li>
+</ul>
+<h3 id="311-initial-pair-probability">3.11 Initial Pair Probability<a class="headerlink" href="#311-initial-pair-probability" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime QA</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>Pr(pair in d decks) = 13 * C(4d, 2) / C(52d, 2)
+</code></pre></div>
+<p>implemented as:</p>
+<div class="highlight"><pre><span></span><code>pairs_per_rank = (4d * (4d - 1)) / 2
+total_pairs = (52d * (52d - 1)) / 2
+pair_rate = 13 * pairs_per_rank / total_pairs
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>theoreticalPairRate(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Checks that shoe randomness is producing plausible initial pair frequency.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>pair probability blackjack d deck</code></li>
+<li><code>combinatorics same rank two cards</code></li>
+</ul>
+<h3 id="312-pairsplitwin-loss-pushvolume-rates">3.12 Pair/Split/Win-Loss-Push/Volume Rates<a class="headerlink" href="#312-pairsplitwin-loss-pushvolume-rates" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>initial_pair_rate = initial_pairs_total / rounds
+rounds_with_split_rate = rounds_with_split / rounds
+winRateRound = roundWins / rounds
+lossRateRound = roundLosses / rounds
+pushRateRound = roundPushes / rounds
+winRateHand = handWins / hands
+lossRateHand = handLosses / hands
+pushRateHand = handPushes / hands
+avgHandsPerRound = hands / rounds
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Creates result summary rates and QA checks.</p>
+<h2 id="4-canonical-runtime-performance-and-risk-formulas">4. Canonical Runtime Performance and Risk Formulas<a class="headerlink" href="#4-canonical-runtime-performance-and-risk-formulas" title="Permanent link">&para;</a></h2>
+<h3 id="41-observed-sample-variance-via-welford">4.1 Observed Sample Variance via Welford<a class="headerlink" href="#41-observed-sample-variance-via-welford" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<p>Online update:</p>
+<div class="highlight"><pre><span></span><code>delta  = x - mean
+count += 1
+mean  += delta / count
+delta2 = x - mean
+m2    += delta * delta2
+</code></pre></div>
+<p>final sample variance:</p>
+<div class="highlight"><pre><span></span><code>variance = m2 / (n - 1)
+sd = sqrt(max(0, variance))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>recordHandOutcome(...)</code>, <code>recordRoundOutcome(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Tracks observed per-hand and per-round variance directly from simulated outcomes.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard external concept. Welford’s online variance update is standard statistics, applied here to blackjack outcomes.</p>
+<p><strong>Citation status</strong></p>
+<p>Exact reference recorded: <a href="#r2-welford-1962">R2</a>.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>x</code>: realized hand or round net result in units</li>
+<li><code>mean</code>, <code>m2</code>, <code>count</code>: Welford accumulators</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li>hand-level <code>x</code> values come from realized hand results recorded through <code>recordHandOutcome(...)</code></li>
+<li>round-level <code>x</code> values come from realized round net results recorded through <code>recordRoundOutcome(...)</code></li>
+<li>those hand and round net values are produced by settlement logic in Section 3 and passed into the Welford accumulators during play</li>
+<li><code>mean</code>, <code>m2</code>, and <code>count</code> are the mutable online accumulators maintained for hands and rounds separately</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<p>Observed sample variance/SD for hand outcomes and round outcomes.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Welford algorithm</code></li>
+<li><code>online sample variance</code></li>
+</ul>
+<h3 id="42-ev-per-hand-per-round-per-initial-bet-and-average-bet">4.2 EV per Hand, per Round, per Initial Bet, and Average Bet<a class="headerlink" href="#42-ev-per-hand-per-round-per-initial-bet-and-average-bet" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>EV_per_hand = sumNetUnits / handsTotal
+EV_per_round = sumNetUnits / actualRoundsPlayed
+initialBetUnitsTotal = Σ (bet_units * frequency)
+EV_per_initial_bet_units = sumNetUnits / initialBetUnitsTotal
+EV_per_initial_bet_pct = 100 * sumNetUnits / initialBetUnitsTotal
+avgBetUnits = totalBetUnits / totalRoundsPlayed
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li>extracted again in <code>scripts/validation/compare_to_reference.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces BJW’s core profitability measures.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard bookkeeping identities over BJW runtime accumulators, with BJW-specific choices about which accumulators are exposed and named.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. These are bookkeeping identities over BJW runtime accumulators.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>sumNetUnits</code>: total realized profit/loss</li>
+<li><code>handsTotal</code>: total hands played</li>
+<li><code>actualRoundsPlayed</code>: total rounds played</li>
+<li><code>betUnitsHistogram</code>: initial-bet histogram</li>
+<li><code>totalBetUnits</code>: total wager actually placed across played rounds</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>sumNetUnits</code> is the top-level net accumulator updated from settled round outcomes</li>
+<li><code>handsTotal</code> comes from hand-level settlement counting</li>
+<li><code>actualRoundsPlayed</code> comes from accepted rounds in the main loop</li>
+<li><code>betUnitsHistogram</code> is built from initial round bets only</li>
+<li><code>totalBetUnits</code> is built from actual round wager exposure and can include doubles/splits on played rounds</li>
+<li><code>initialBetUnitsTotal</code> is reconstructed from <code>betUnitsHistogram</code></li>
+</ul>
+<p><strong>Important note</strong></p>
+<p><code>avgBetUnits</code> is the average total wager per played round from <code>betting.totalBetUnits / betting.totalRoundsPlayed</code>.</p>
+<p>That is not always the same as average initial bet, because <code>totalBetUnits</code> can include additional wager exposure from doubles and splits on rounds that were actually played.</p>
+<p>BJW’s canonical runtime <code>risk_primary</code> formulas do not use <code>avgBetUnits</code> directly, but helper scripts, optimizers, and reporting code often use it for normalization and spread comparison.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>EV per hand</code></li>
+<li><code>IBA</code></li>
+<li><code>initial bet advantage</code></li>
+<li><code>total win divided by initial bet</code></li>
+</ul>
+<h3 id="43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection<a class="headerlink" href="#43-primary-risk-basis-selection" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>if counting and count-based betting:
+  primary basis = per_round
+else:
+  primary basis = per_hand
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code> <code>syncObservedRiskContract(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Decides whether <code>risk_primary</code> uses observed round variance or observed hand variance.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW contract choice. This is not an external blackjack theorem; it is the current canonical result-contract rule BJW applies after simulation.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. This is a BJW result-contract rule.</p>
+<p><strong>Important note</strong></p>
+<p><code>syncObservedRiskContract(...)</code> is the step that writes:</p>
+<ul>
+<li><code>summary.observed</code></li>
+<li>top-level per-hand aliases like <code>summary.sdPerHandUnits</code></li>
+<li>canonical <code>summary.risk_primary</code></li>
+</ul>
+<p>after worker aggregation and pooled-variance recomputation.</p>
+<h3 id="44-score">4.4 SCORE<a class="headerlink" href="#44-score" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>SCORE = 1,000,000 * EV^2 / Variance
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code></li>
+<li><code>src/python/wonk_tools/results.py</code></li>
+<li><code>src/python/bjw/catalog/results.py</code></li>
+<li><code>scripts/validation/compare_to_reference.py</code></li>
+<li><code>scripts/validation/intake_reference.py</code></li>
+<li>display/reporting duplicates in <code>scripts/sim_ui.py</code>, <code>scripts/gui/widgets/simulation_manager.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces the standardized risk-adjusted comparison metric BJW reports.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard blackjack/AP concept, but the exact citation is not recorded here. The formula is well known in blackjack literature; BJW’s additional choice is which EV/variance basis feeds it.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for an exact source in this pass.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>EV</code>: canonical EV on the current risk basis</li>
+<li><code>Variance</code>: canonical variance on the current risk basis</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li>for active runtime results, both values come from <code>summary.risk_primary</code></li>
+<li>that object is populated by <code>syncObservedRiskContract(...)</code> after pooled aggregation and basis selection</li>
+<li>for non-counting runs this usually means per-hand observed EV/variance</li>
+<li>for counted runs on this branch this usually means per-round observed EV/variance</li>
+</ul>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>SCORE blackjack</code></li>
+<li><code>1,000,000 * EV^2 / variance</code></li>
+<li><code>Blackjack Attack SCORE</code></li>
+</ul>
+<h3 id="45-desirability-index-di">4.5 Desirability Index (DI)<a class="headerlink" href="#45-desirability-index-di" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>DI = 1000 * EV / SD
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code></li>
+<li><code>src/python/wonk_tools/results.py</code></li>
+<li><code>src/python/bjw/catalog/results.py</code></li>
+<li><code>scripts/validation/compare_to_reference.py</code></li>
+<li>display/reporting duplicates in <code>scripts/sim_ui.py</code>, <code>scripts/gui/widgets/simulation_manager.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces BJW’s standard DI metric.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard blackjack/AP concept, but the exact citation is not recorded here. BJW’s runtime contract defines which EV/SD basis feeds the DI.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for an exact source in this pass.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Desirability Index blackjack</code></li>
+<li><code>DI = 1000 EV / SD</code></li>
+<li><code>Blackjack Attack DI</code></li>
+</ul>
+<h3 id="46-canonical-runtime-n0">4.6 Canonical Runtime N0<a class="headerlink" href="#46-canonical-runtime-n0" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>N0 = (SD / EV)^2
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code></li>
+<li><code>src/python/bjw/catalog/results.py</code> (via <code>1_000_000 / SCORE</code>)</li>
+<li><code>scripts/validation/compare_to_reference.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Produces BJW’s canonical <code>risk_primary.n0</code> and preserves the algebraic identity:</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard blackjack/AP concept, but the exact citation is not recorded here. BJW’s runtime contract defines the basis and therefore the unit semantics.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for an exact source in this pass.</p>
+<div class="highlight"><pre><span></span><code>DI^2 = SCORE
+SCORE * N0 = 1,000,000
+</code></pre></div>
+<p>only when all three metrics are derived from the same EV and variance basis.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>N0 blackjack</code></li>
+<li><code>N-zero</code></li>
+<li><code>hands to one standard deviation</code></li>
+</ul>
+<p><strong>Important note</strong></p>
+<p>This is <strong>not</strong> the same formula used in some helper/experiment scripts, which compute a 95%-confidence hands-to-profit quantity using <code>1.96</code>; see <a href="#85-helperapi-n0confidence-formula">8.5 Helper/API N0(Confidence) Formula</a> and <a href="#112-n0-definition-drift">11.2 N0 Definition Drift</a>.</p>
+<h3 id="47-risk-of-ruin-ror-approximation">4.7 Risk of Ruin (RoR) Approximation<a class="headerlink" href="#47-risk-of-ruin-ror-approximation" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>RoR ≈ exp(-2 * bankroll * edge / variance)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li>duplicate reporting/optimizer copies in <code>scripts/compare_spreads.py</code>, <code>scripts/optimize_spread.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Approximates the probability of eventual ruin for a positive-edge game.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard external approximation, not an exact blackjack-specific theorem. BJW uses it as an approximation layer over simulated EV/variance.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for the exact approximation source used here.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>bankroll</code>: bankroll in units</li>
+<li><code>edge</code>: EV on the primary risk basis</li>
+<li><code>variance</code>: variance on the same basis</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>bankroll</code> comes from bankroll settings or bankroll-analysis inputs expressed in betting units</li>
+<li><code>edge</code> is the canonical EV chosen on the same basis as <code>summary.risk_primary</code></li>
+<li><code>variance</code> is the canonical variance on that same basis</li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<p>The approximation only makes sense if <code>bankroll</code>, <code>edge</code>, and <code>variance</code> all share the same unit basis.</p>
+<p><strong>Important note</strong></p>
+<p>This is a gambler’s-ruin-style exponential approximation, not an exact blackjack theorem for BJW’s variable-bet counted games.</p>
+<p>It is most defensible as a large-bankroll, positive-drift approximation. Reliability degrades when bankroll is small, edge is small, or the process departs materially from an i.i.d. random walk.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>risk of ruin exponential approximation</code></li>
+<li><code>exp(-2BR/variance)</code></li>
+<li><code>blackjack bankroll approximation</code></li>
+</ul>
+<h3 id="48-bankroll-sizing-from-target-ror">4.8 Bankroll Sizing from Target RoR<a class="headerlink" href="#48-bankroll-sizing-from-target-ror" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>bankroll = -ln(target_ror) * variance / (2 * edge)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Inverts the RoR approximation to recommend bankroll sizes for target ruin probabilities.</p>
+<p><strong>Provenance status</strong></p>
+<p>Derived from the same standard approximation described in <a href="#47-risk-of-ruin-ror-approximation">4.7 Risk of Ruin (RoR) Approximation</a>, so its limits are the same.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded beyond the approximation note in <a href="#47-risk-of-ruin-ror-approximation">4.7 Risk of Ruin (RoR) Approximation</a>.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>bankroll from risk of ruin</code></li>
+<li><code>-ln(RoR) variance / 2 edge</code></li>
+</ul>
+<h2 id="5-parallel-aggregation-and-pooled-variance-formulas">5. Parallel Aggregation and Pooled Variance Formulas<a class="headerlink" href="#5-parallel-aggregation-and-pooled-variance-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section provenance note</strong></p>
+<p>This section is standard statistics, not blackjack-specific literature.</p>
+<p><strong>Section citation status</strong></p>
+<p>Exact reference recorded for the combined-variance algorithms discussed here: <a href="#r3-chan-golub-leveque-1983">R3</a>.</p>
+<h3 id="51-pooled-mean-and-variance-for-merged-worker-results">5.1 Pooled Mean and Variance for Merged Worker Results<a class="headerlink" href="#51-pooled-mean-and-variance-for-merged-worker-results" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime aggregation</p>
+<p><strong>Formula</strong></p>
+<p>Two-sample pooled mean:</p>
+<div class="highlight"><pre><span></span><code>pooled_mean = (n1 * mean1 + n2 * mean2) / (n1 + n2)
+</code></pre></div>
+<p>Two-sample pooled variance:</p>
+<div class="highlight"><pre><span></span><code>pooled_var =
+  ((n1 - 1) * var1
+   + (n2 - 1) * var2
+   + n1 * n2 / (n1 + n2) * (mean1 - mean2)^2)
+  / (n1 + n2 - 1)
+</code></pre></div>
+<p>Multi-worker pooled variance:</p>
+<div class="highlight"><pre><span></span><code>var_pooled = Σ[(n_i - 1) * var_i + n_i * (mean_i - mean_pooled)^2] / (N - 1)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/index.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Combines worker-local variances without losing between-worker mean differences.</p>
+<p><strong>Important note</strong></p>
+<p>This is a standard statistics combine formula, not a blackjack-specific result.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>pooled variance formula</code></li>
+<li><code>parallel variance combine</code></li>
+<li><code>between group variance term</code></li>
+<li><code>combining variance from batches</code></li>
+<li><code>Chan Golub LeVeque variance</code></li>
+</ul>
+<h2 id="6-per-bucket-and-decision-telemetry-formulas">6. Per-Bucket and Decision-Telemetry Formulas<a class="headerlink" href="#6-per-bucket-and-decision-telemetry-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section provenance note</strong></p>
+<p>These are BJW runtime bookkeeping and sample-moment formulas built from simulator telemetry. They are mostly arithmetic identities over recorded outcomes rather than externally named blackjack formulas.</p>
+<p><strong>Section citation status</strong></p>
+<p>No verified citation recorded section-wide. These are BJW telemetry and bookkeeping formulas.</p>
+<h3 id="61-ev-by-bucket-variance">6.1 EV-by-Bucket Variance<a class="headerlink" href="#61-ev-by-bucket-variance" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime telemetry</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>EV_per_hand = sumNetUnits / hands
+variance =
+  (sumNetUnitsSq - sumNetUnits^2 / hands) / (hands - 1)
+SD = sqrt(max(0, variance))
+avgBetUnits = totalBetUnits / rounds
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>evByBucket</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Computes EV and SD per count bucket from raw aggregates.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>sample variance from sum of squares</code></li>
+<li><code>EV by true count</code></li>
+</ul>
+<h3 id="62-exact-decision-variable-sd">6.2 Exact Decision Variable SD<a class="headerlink" href="#62-exact-decision-variable-sd" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime telemetry</p>
+<p><strong>Formula</strong></p>
+<p>Same sample-variance identity as above, applied to the exact decision variable map.</p>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>exactDecisionVarStats</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Checks monotonicity and non-bucketed decision-value behavior.</p>
+<h3 id="63-decision-telemetry-action-evsd">6.3 Decision Telemetry Action EV/SD<a class="headerlink" href="#63-decision-telemetry-action-evsd" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Canonical runtime telemetry</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>avgEV = sumEV / count
+variance = (sumEVSq - sumEV^2 / count) / (count - 1)
+sdEV = sqrt(max(0, variance))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>decision_telemetry</code></li>
+<li>pooled again in <code>src/typescript/simulator_lite/src/index.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Measures counterfactual action EV/dispersion for deviation discovery.</p>
+<h2 id="7-legacy-and-diagnostic-variance-formulas">7. Legacy and Diagnostic Variance Formulas<a class="headerlink" href="#7-legacy-and-diagnostic-variance-formulas" title="Permanent link">&para;</a></h2>
+<h3 id="71-legacy-chapter10-variance-decomposition">7.1 Legacy <code>chapter10</code> Variance Decomposition<a class="headerlink" href="#71-legacy-chapter10-variance-decomposition" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Diagnostic/legacy only</p>
+<p><strong>Formula</strong></p>
+<p>Per-hand and per-round versions both use:</p>
+<div class="highlight"><pre><span></span><code>E_b   = sum_b / count
+E_w   = sum_w / count
+E_b2  = sum_b2 / count
+E_w2  = sum_w2 / count
+E_bw  = sum_bw / count
+Var_b = E_b2 - E_b^2
+Var_w = E_w2 - E_w^2
+Cov_bw = E_bw - E_b * E_w
+
+variance = E_b2 * Var_w + Var_b * E_w^2 + 2 * Cov_bw * E_b * E_w
+sd = sqrt(max(0, variance))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li>raw telemetry capture in <code>src/typescript/simulator_lite/src/simulator.ts</code> <code>recordBetOutcome(...)</code>, <code>recordRoundBetOutcome(...)</code></li>
+<li>recompute in <code>scripts/validation/run_formula_recompute_audit.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Legacy BJW decomposition of variable-betting variance from bet/outcome accumulators.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>b</code>: bet size</li>
+<li><code>w</code>: normalized per-unit outcome</li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li>per-hand <code>b</code> and <code>w</code> are captured by <code>recordBetOutcome(...)</code></li>
+<li><code>b</code> is the realized wager on that hand</li>
+<li><code>w = hand_outcome / b</code></li>
+<li>per-round <code>b</code> and <code>w</code> are captured by <code>recordRoundBetOutcome(...)</code></li>
+<li><code>b</code> is the initial round bet</li>
+<li><code>w = round_outcome / initial_bet</code></li>
+<li>the raw sums <code>sum_b</code>, <code>sum_w</code>, <code>sum_b2</code>, <code>sum_w2</code>, <code>sum_bw</code>, and <code>count</code> are stored in legacy variance telemetry and recomputed by <code>run_formula_recompute_audit.py</code></li>
+</ul>
+<p><strong>Important note</strong></p>
+<p>This is <strong>not</strong> BJW’s canonical counted-risk formula on this branch.</p>
+<p>Its provenance is currently repo-local and unresolved as an external citation. It should not be treated as a verified Schlesinger, Griffin, or Epstein formula unless an exact source is found.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>variance of product bet outcome covariance</code></li>
+<li><code>variable betting variance decomposition</code></li>
+</ul>
+<h3 id="72-legacy-di_adjusted-reconstruction">7.2 Legacy <code>di_adjusted</code> Reconstruction<a class="headerlink" href="#72-legacy-di_adjusted-reconstruction" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Diagnostic/legacy only</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>E[bet^2] = Σ(bet^2 * frequency) / rounds
+base_variance = E[bet^2] * Var_w
+var_bet_component = Var_b * E_w^2
+covariance_component = 2 * Cov_bw * E_b * E_w
+variance = base_variance + var_bet_component + covariance_component
+sd = sqrt(variance)
+count_correlation_factor = variance / base_variance
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/validation/run_formula_recompute_audit.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Audits older result files that still contain <code>di_adjusted</code>.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded.</p>
+<p><strong>Provenance status</strong></p>
+<p>Legacy unsourced. This block exists to recompute and audit older BJW outputs, not as a currently validated canonical variance formula.</p>
+<h3 id="73-rms-sd-validation-heuristic">7.3 RMS SD Validation Heuristic<a class="headerlink" href="#73-rms-sd-validation-heuristic" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Diagnostic/validation only</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>E_b = Σ(bet * count) / N
+E_b2 = Σ(bet^2 * count) / N
+rms_bet = sqrt(E_b2)
+
+non-counting expected SD scaling:
+  SD_expected = baseline_SD * rms_bet
+
+counting heuristic:
+  SD_expected = baseline_SD * rms_bet * sqrt(0.71)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/simulator_support/sd_validation.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Sanity-checks whether observed SD is in a plausible range for a bet histogram.</p>
+<p><strong>Important note</strong></p>
+<p>This is a simulator-side heuristic, not BJW’s canonical runtime variance model.</p>
+<p>The repo does not currently carry a verified external citation for the <code>0.71</code> factor. Treat it as a legacy BJW validation heuristic, not a sourced blackjack formula.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>RMS bet scaling</code></li>
+<li><code>sqrt(E[bet^2])</code></li>
+<li><code>variance reduction factor 0.71</code></li>
+</ul>
+<h2 id="8-reporting-helper-optimizer-and-experiment-formulas">8. Reporting, Helper, Optimizer, and Experiment Formulas<a class="headerlink" href="#8-reporting-helper-optimizer-and-experiment-formulas" title="Permanent link">&para;</a></h2>
+<p>This section covers formulas outside the simulator that still produce blackjack/AP claims from result files.</p>
+<h3 id="81-sharpe-like-ratio">8.1 Sharpe-Like Ratio<a class="headerlink" href="#81-sharpe-like-ratio" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper/optimizer</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>Sharpe_like = EV / SD
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/compare_spreads.py</code></li>
+<li><code>scripts/optimize_spread.py</code></li>
+<li><code>scripts/ml/fitness_evaluator.py</code></li>
+<li><code>scripts/ml/analyze_results.py</code></li>
+<li><code>scripts/analysis/results_to_markdown.py</code></li>
+<li><code>scripts/sim_ui.py</code></li>
+<li><code>scripts/gui/widgets/simulation_manager.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Used as a generic risk-adjusted comparison metric in optimizers and UI.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard generic ratio concept, but not BJW’s canonical blackjack DI unless the <code>1000</code> scaling and correct runtime basis are applied.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for an exact source in this pass.</p>
+<p><strong>Important note</strong></p>
+<p>This is <strong>not</strong> BJW’s standard DI unless the script explicitly multiplies by <code>1000</code>.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>Sharpe ratio</code></li>
+<li><code>EV over SD</code></li>
+</ul>
+<h3 id="82-reweighting-formulas-for-spread-optimization">8.2 Reweighting Formulas for Spread Optimization<a class="headerlink" href="#82-reweighting-formulas-for-spread-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Optimizer/ML only</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>EV_new = Σ(freq_i * EV_i * bet_i)
+Variance_new = Σ(freq_i * SD_i^2 * bet_i^2)
+SD_new = sqrt(Variance_new)
+AvgBet = Σ(freq_i * bet_i)
+Sharpe = EV_new / SD_new
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/optimize_spread.py</code></li>
+<li><code>scripts/ml/fitness_evaluator.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Approximates the performance of alternative bet ramps from one baseline simulation.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW-authored model/heuristic. This is an internal approximation method for optimization, not a verified exact law for recomputing counted-strategy EV/variance under arbitrary new spreads.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>freq_i</code>: bucket frequency from <code>evByBucket</code></li>
+<li><code>EV_i</code>: per-hand EV in bucket <code>i</code> from <code>evByBucket[*].evPerHandUnits</code></li>
+<li><code>SD_i</code>: per-hand SD in bucket <code>i</code> from <code>evByBucket[*].sdPerHandUnits</code></li>
+<li><code>bet_i</code>: proposed bet size in bucket <code>i</code></li>
+</ul>
+<p><strong>Where the variables come from</strong></p>
+<ul>
+<li><code>freq_i</code> is built from baseline <code>evByBucket</code> telemetry by dividing bucket hands by total baseline hands</li>
+<li><code>EV_i</code> and <code>SD_i</code> are read directly from the baseline result’s per-bucket telemetry</li>
+<li><code>bet_i</code> comes from the candidate spread allocation being optimized or scored</li>
+<li><code>AvgBet</code> is then reconstructed from <code>freq_i * bet_i</code>, not read directly from runtime <code>risk_primary</code></li>
+</ul>
+<p><strong>Important note</strong></p>
+<p>These optimizers currently reweight hand-level bucket telemetry, not canonical counted <code>risk_primary</code> round-basis risk. That makes them a useful approximation tool, but not a direct implementation of the new counted-risk contract.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>reweighting bet spread optimization</code></li>
+<li><code>bucket frequency weighted EV</code></li>
+</ul>
+<h3 id="83-helperapi-di-formula">8.3 Helper/API DI Formula<a class="headerlink" href="#83-helperapi-di-formula" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>DI = 1000 * EV / SD
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/wonk_tools/results.py</code> <code>get_di(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Convenience API for scripts and reports.</p>
+<p><strong>Provenance status</strong></p>
+<p>Helper wrapper around the DI concept in <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a>. The main risk is semantic drift, not different mathematics.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded beyond the base DI concept note in <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a>.</p>
+<h3 id="84-helperapi-score-formula">8.4 Helper/API SCORE Formula<a class="headerlink" href="#84-helperapi-score-formula" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>SCORE = 1,000,000 * EV^2 / variance
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/wonk_tools/results.py</code> <code>get_score(...)</code></li>
+</ul>
+<p><strong>Provenance status</strong></p>
+<p>Helper wrapper around the SCORE concept in <a href="#44-score">4.4 SCORE</a>. The main risk is basis drift if callers assume the wrong variance source.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded beyond the base SCORE concept note in <a href="#44-score">4.4 SCORE</a>.</p>
+<h3 id="85-helperapi-n0confidence-formula">8.5 Helper/API N0(Confidence) Formula<a class="headerlink" href="#85-helperapi-n0confidence-formula" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>N0_confidence = (z * SD / EV)^2
+</code></pre></div>
+<p>with:</p>
+<ul>
+<li><code>z = 1.96</code> for 95%</li>
+<li><code>z = 2.576</code> for 99%</li>
+</ul>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/wonk_tools/results.py</code> <code>get_n0(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Returns a “hands needed for chosen confidence of being ahead” quantity.</p>
+<p><strong>Provenance status</strong></p>
+<p>Helper/reporting convention. This is not BJW’s canonical runtime N0 and should be treated as a confidence-style derivative quantity.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded for an exact source in this pass.</p>
+<p><strong>Important note</strong></p>
+<p>This is a <strong>different definition</strong> from runtime <code>risk_primary.n0</code>; see <a href="#46-canonical-runtime-n0">4.6 Canonical Runtime N0</a> and <a href="#112-n0-definition-drift">11.2 N0 Definition Drift</a>.</p>
+<p>Units depend on the basis of <code>EV</code> and <code>SD</code>:</p>
+<ul>
+<li>with per-hand inputs, the output is in hands</li>
+<li>with per-round inputs, the output is in rounds</li>
+</ul>
+<p>On current results, <code>methodology='primary'</code> returns <code>summary.risk_primary.n0</code>, whose unit follows the canonical runtime basis rather than always meaning hands.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>hands to 95% confidence of profit</code></li>
+<li><code>1.96 SD over EV squared</code></li>
+</ul>
+<h3 id="86-catalog-fallback-formulas">8.6 Catalog Fallback Formulas<a class="headerlink" href="#86-catalog-fallback-formulas" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>DI = 1000 * EV / SD
+SCORE = 1,000,000 * EV^2 / variance
+N0 = 1,000,000 / SCORE
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/python/bjw/catalog/results.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Lets the results browser backfill DI/SCORE/N0 when result files do not explicitly provide them.</p>
+<p><strong>Provenance status</strong></p>
+<p>Fallback reporting formulas derived from the canonical metric relationships, used when richer runtime fields are unavailable.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded beyond the base metric sections they derive from.</p>
+<h3 id="87-result-comparison-confidence-heuristics">8.7 Result-Comparison Confidence Heuristics<a class="headerlink" href="#87-result-comparison-confidence-heuristics" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/UI</p>
+<p><strong>Formulas</strong></p>
+<p>Simple change percentages:</p>
+<div class="highlight"><pre><span></span><code>pct_change = |new - old| / |old| * 100
+</code></pre></div>
+<p>and heuristic thresholds such as:</p>
+<ul>
+<li><code>&lt; 1%</code>: likely noise</li>
+<li><code>&lt; 3%</code>: may be within single-run variance</li>
+</ul>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/sim_ui.py</code> <code>assess_comparison_confidence(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Provides operator-facing warnings when optimization improvements are probably too small to trust.</p>
+<p><strong>Provenance status</strong></p>
+<p>BJW-authored heuristic. The percentage cutoffs are operator-facing warning thresholds, not sourced statistical decision rules.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded.</p>
+<h3 id="88-win-per-hand-win-per-round-ev-of-average-bet-per-100-hand-conversions">8.8 Win per Hand / Win per Round / EV% of Average Bet / Per-100-Hand Conversions<a class="headerlink" href="#88-win-per-hand-win-per-round-ev-of-average-bet-per-100-hand-conversions" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Reporting/helper</p>
+<p><strong>Formulas</strong></p>
+<div class="highlight"><pre><span></span><code>win_per_hand = net_units / hands
+win_per_round = net_units / rounds
+ev_pct_of_avg_bet = 100 * EV_per_hand / avg_bet
+EV_per_100_hands = EV_per_hand * 100
+SD_per_100_hands = SD_per_hand * sqrt(100) = SD_per_hand * 10
+EV_basis_points = EV_fraction * 100 * 100
+rate_pct = 100 * rate
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/sim_ui.py</code></li>
+<li><code>scripts/gui/widgets/simulation_manager.py</code></li>
+<li><code>scripts/analysis/analyze_kelly.py</code></li>
+<li><code>scripts/experiments/experiment1_rule_variation_matrix.py</code></li>
+<li><code>src/python/wonk_tools/results.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Turns simulator outputs into more operator-friendly units.</p>
+<p><strong>Provenance status</strong></p>
+<p>Standard unit-conversion arithmetic over BJW result fields.</p>
+<p><strong>Citation status</strong></p>
+<p>No verified citation recorded. These are direct unit conversions.</p>
+<h2 id="9-statistical-confidence-and-comparison-formulas">9. Statistical Confidence and Comparison Formulas<a class="headerlink" href="#9-statistical-confidence-and-comparison-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section provenance note</strong></p>
+<p>This section is standard statistics and hypothesis-testing math, not blackjack-specific literature.</p>
+<p><strong>Section citation status</strong></p>
+<p>Exact reference recorded for confidence-interval and mean-comparison background: <a href="#r4-nistsematech-e-handbook-confidence-and-comparison-pages">R4</a>. Other formulas in this section are standard statistics, but no additional exact citation is recorded subsection-by-subsection in this pass.</p>
+<h3 id="91-standard-error-95-ci-on-ev">9.1 Standard Error / 95% CI on EV<a class="headerlink" href="#91-standard-error-95-ci-on-ev" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison</p>
+<p><strong>Formula</strong></p>
+<p>Single-run EV CI:</p>
+<div class="highlight"><pre><span></span><code>SEM = SD / sqrt(n)
+CI_95_half_width = 1.96 * SEM
+</code></pre></div>
+<p>EV delta between two independent runs:</p>
+<div class="highlight"><pre><span></span><code>SEM_delta = sqrt((SD_a / sqrt(n_a))^2 + (SD_b / sqrt(n_b))^2)
+CI_95_half_width = 1.96 * SEM_delta
+</code></pre></div>
+<p>BJW also expresses some of these in percent or basis points:</p>
+<div class="highlight"><pre><span></span><code>CI_95_EV_pct = 1.96 * SD / sqrt(n) * 100
+CI_95_EV_bp = EV_to_bp(1.96 * SD / sqrt(n))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/experiments/experiment1_rule_variation_matrix.py</code></li>
+<li><code>scripts/experiments/common.py</code></li>
+<li><code>scripts/experiments/experiment2_score_di_n0_matrix.py</code></li>
+<li><code>scripts/experiments/experiment3_ko_warmline_penetration.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Quantifies uncertainty around EV or EV deltas.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>standard error mean</code></li>
+<li><code>95% confidence interval 1.96</code></li>
+<li><code>difference of two means standard error</code></li>
+</ul>
+<h3 id="92-standard-error-of-ev-by-bucket-difference">9.2 Standard Error of EV-by-Bucket Difference<a class="headerlink" href="#92-standard-error-of-ev-by-bucket-difference" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>variance = (sum_sq - sum^2 / n) / (n - 1)
+ours_sd = sqrt(variance)
+ours_se = ours_sd / sqrt(n)
+se_delta = sqrt(ours_se^2 + ref_se^2)
+pass if |delta| &lt;= 2 * se_delta
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/validation/compare_to_reference.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Assesses whether BJW EV-by-TC differs materially from the reference tool’s EV-by-TC.</p>
+<h3 id="93-t-critical-mean-ci-for-repeated-runs">9.3 t-Critical / Mean ± CI for Repeated Runs<a class="headerlink" href="#93-t-critical-mean-ci-for-repeated-runs" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>CI = t_(0.95, df) * std / sqrt(n)
+</code></pre></div>
+<p>or via SciPy:</p>
+<div class="highlight"><pre><span></span><code>stats.t.interval(0.95, n-1, loc=mean, scale=stats.sem(samples))
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/validation/compare_to_reference.py</code> <code>mean_ci95(...)</code></li>
+<li><code>scripts/ml/analyze_results.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Builds confidence intervals when multiple independent simulation runs exist.</p>
+<h3 id="94-z-score-for-run-to-run-comparison">9.4 Z-Score for Run-to-Run Comparison<a class="headerlink" href="#94-z-score-for-run-to-run-comparison" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>SE_diff = sqrt(SD1^2 / N1 + SD2^2 / N2)
+z = EV_diff / SE_diff
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/gui/widgets/comparison_tool.py</code></li>
+<li><code>scripts/analyze_penetration_effects.py</code></li>
+<li><code>scripts/validate_exact_decision_var_monotonicity.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Scores how statistically meaningful an observed EV difference is.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>z score difference of means</code></li>
+<li><code>SE(diff) = sqrt(sd1^2/n1 + sd2^2/n2)</code></li>
+</ul>
+<h3 id="95-two-sample-t-test-for-sharpe-comparison">9.5 Two-Sample t-Test for Sharpe Comparison<a class="headerlink" href="#95-two-sample-t-test-for-sharpe-comparison" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison</p>
+<p><strong>Formula</strong></p>
+<p>Implemented through SciPy:</p>
+<div class="highlight"><pre><span></span><code>stats.ttest_ind(candidate_sharpes, baseline_sharpes)
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/ml/analyze_results.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Tests whether candidate spread Sharpe means differ significantly from baseline Sharpe means.</p>
+<h3 id="96-minimum-sample-heuristic-for-ev-precision">9.6 Minimum Sample Heuristic for EV Precision<a class="headerlink" href="#96-minimum-sample-heuristic-for-ev-precision" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Statistical comparison / experiment design</p>
+<p><strong>Formula</strong></p>
+<p>Used in some experiment scripts as a back-of-the-envelope minimum rounds-per-bucket rule:</p>
+<div class="highlight"><pre><span></span><code>min_rounds ≈ (1.96 * SD / desired_precision)^2
+</code></pre></div>
+<p>Current hard-coded example:</p>
+<div class="highlight"><pre><span></span><code>MIN_BUCKET_ROUNDS_FOR_SIG = (1.96 * 1.1 / 0.01)^2
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>scripts/experiments/experiment3_ko_warmline_penetration.py</code></li>
+<li><code>scripts/experiments/experiment7_rc_penetration_surface.py</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Defines a rough minimum bucket sample size before treating a bucket EV as statistically useful.</p>
+<p><strong>Search terms</strong></p>
+<ul>
+<li><code>sample size for confidence interval width</code></li>
+<li><code>required n for desired standard error</code></li>
+</ul>
+<h2 id="10-qa-threshold-and-sanity-check-formulas">10. QA Threshold and Sanity-Check Formulas<a class="headerlink" href="#10-qa-threshold-and-sanity-check-formulas" title="Permanent link">&para;</a></h2>
+<p><strong>Section provenance note</strong></p>
+<p>Unless otherwise stated, thresholds in this section are BJW-authored QA heuristics rather than externally sourced blackjack constants.</p>
+<p><strong>Section citation status</strong></p>
+<p>No verified citation recorded section-wide unless a subsection says otherwise.</p>
+<h3 id="101-initial-pair-baseline-tolerance">10.1 Initial Pair Baseline Tolerance<a class="headerlink" href="#101-initial-pair-baseline-tolerance" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Runtime QA</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>initial_pair_rate = initial_pairs_total / rounds
+deviation = |initial_pair_rate - theoretical_pair_rate|
+PASS if deviation &lt;= 0.6 percentage points
+WARN if deviation &lt;= 1.2 percentage points
+FAIL otherwise
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>performInstrumentationChecks(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Checks that pair frequency looks plausible for a random shoe source.</p>
+<h3 id="102-rounds-with-split-bound">10.2 Rounds-With-Split Bound<a class="headerlink" href="#102-rounds-with-split-bound" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Runtime QA</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>rounds_with_split_rate = rounds_with_split / rounds
+expected bound: rounds_with_split_rate &lt;= 0.08
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code> <code>performInstrumentationChecks(...)</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Warns when split frequency looks suspiciously high.</p>
+<h3 id="103-kelly-cap-warning-threshold">10.3 Kelly Cap Warning Threshold<a class="headerlink" href="#103-kelly-cap-warning-threshold" title="Permanent link">&para;</a></h3>
+<p><strong>Status</strong>: Runtime QA</p>
+<p><strong>Formula</strong></p>
+<div class="highlight"><pre><span></span><code>pct_bets_at_cap = 100 * betsAtCap / totalRoundsPlayed
+warning if pct_bets_at_cap &gt; 10
+</code></pre></div>
+<p><strong>Primary locations</strong></p>
+<ul>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+</ul>
+<p><strong>What it is for</strong></p>
+<p>Warns that the Kelly model is frequently slamming into table limits, which can make the spread unrealistic.</p>
+<h2 id="11-known-semantic-drifts-you-should-audit-carefully">11. Known Semantic Drifts You Should Audit Carefully<a class="headerlink" href="#11-known-semantic-drifts-you-should-audit-carefully" title="Permanent link">&para;</a></h2>
+<h3 id="111-di-scaling-drift">11.1 DI Scaling Drift<a class="headerlink" href="#111-di-scaling-drift" title="Permanent link">&para;</a></h3>
+<p>There are two DI-style formulas in the repo:</p>
+<ul>
+<li>standard DI:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>DI = 1000 * EV / SD
+</code></pre></div>
+<ul>
+<li>dimensionless EV/SD ratio, sometimes still labeled “DI” in old experiment/report code:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ratio = EV / SD
+</code></pre></div>
+<p><strong>Files to inspect</strong></p>
+<ul>
+<li>standard DI: runtime, helpers, comparator, UI</li>
+<li>dimensionless ratio: <code>scripts/experiments/experiment2_score_di_n0_matrix.py</code>, <code>scripts/experiments/experiment3_ko_warmline_penetration.py</code>, <code>scripts/experiments/common.py</code></li>
+</ul>
+<p><strong>Primary definitions</strong></p>
+<ul>
+<li>Canonical runtime DI: <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a></li>
+<li>Helper/API DI: <a href="#83-helperapi-di-formula">8.3 Helper/API DI Formula</a></li>
+<li>Dimensionless ratio used in some optimizers: <a href="#81-sharpe-like-ratio">8.1 Sharpe-Like Ratio</a></li>
+</ul>
+<h3 id="112-n0-definition-drift">11.2 N0 Definition Drift<a class="headerlink" href="#112-n0-definition-drift" title="Permanent link">&para;</a></h3>
+<p>There are two N0-style formulas in the repo:</p>
+<ul>
+<li>runtime/canonical:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>N0 = (SD / EV)^2
+</code></pre></div>
+<ul>
+<li>confidence-style “hands to 95% confidence”:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>N0_95 = (1.96 * SD / EV)^2
+</code></pre></div>
+<p><strong>Files to inspect</strong></p>
+<ul>
+<li>canonical runtime N0: simulator, aggregator, catalog, comparator</li>
+<li>confidence-style N0: <code>src/python/wonk_tools/results.py</code>, <code>scripts/experiments/common.py</code>, <code>scripts/experiments/experiment2_score_di_n0_matrix.py</code></li>
+</ul>
+<p><strong>Primary definitions</strong></p>
+<ul>
+<li>Canonical runtime N0: <a href="#46-canonical-runtime-n0">4.6 Canonical Runtime N0</a></li>
+<li>Confidence-style helper N0: <a href="#85-helperapi-n0confidence-formula">8.5 Helper/API N0(Confidence) Formula</a></li>
+</ul>
+<h3 id="113-counted-risk-basis-drift-in-older-scripts">11.3 Counted-Risk Basis Drift in Older Scripts<a class="headerlink" href="#113-counted-risk-basis-drift-in-older-scripts" title="Permanent link">&para;</a></h3>
+<p>Some older experiment/report code still assumes counted runs should read <code>summary.chapter10</code> and/or per-hand counted SD.</p>
+<p><strong>Files to inspect</strong></p>
+<ul>
+<li><code>scripts/experiments/experiment2_score_di_n0_matrix.py</code></li>
+<li><code>scripts/experiments/experiment3_ko_warmline_penetration.py</code></li>
+<li><code>scripts/experiments/common.py</code> when <code>prefer_ch10=True</code></li>
+<li><code>src/python/wonk_tools/results.py</code> old methodology options</li>
+</ul>
+<p><strong>Primary definitions</strong></p>
+<ul>
+<li>Canonical counted-risk basis: <a href="#43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection</a></li>
+<li>Legacy diagnostic variance: <a href="#71-legacy-chapter10-variance-decomposition">7.1 Legacy <code>chapter10</code> Variance Decomposition</a></li>
+</ul>
+<h3 id="114-top-level-per-hand-fields-vs-risk_primary">11.4 Top-Level Per-Hand Fields vs <code>risk_primary</code><a class="headerlink" href="#114-top-level-per-hand-fields-vs-risk_primary" title="Permanent link">&para;</a></h3>
+<p>Some UI/reporting scripts still compute DI/SCORE/Sharpe from:</p>
+<div class="highlight"><pre><span></span><code>summary.evPerHandUnits
+summary.sdPerHandUnits
+summary.varPerHandUnits
+</code></pre></div>
+<p>instead of reading:</p>
+<div class="highlight"><pre><span></span><code>summary.risk_primary
+</code></pre></div>
+<p>That means counted-run displays in those scripts can still show per-hand risk math even though canonical counted risk is now per-round.</p>
+<p><strong>Files to inspect</strong></p>
+<ul>
+<li><code>scripts/sim_ui.py</code></li>
+<li><code>scripts/gui/widgets/simulation_manager.py</code></li>
+<li><code>scripts/compare_spreads.py</code></li>
+<li><code>scripts/analysis/results_to_markdown.py</code></li>
+<li><code>scripts/ml/analyze_results.py</code></li>
+</ul>
+<p><strong>Primary definitions</strong></p>
+<ul>
+<li>Contract-sync step: <a href="#43-primary-risk-basis-selection">4.3 Primary Risk Basis Selection</a></li>
+<li>Canonical SCORE/DI/N0: <a href="#44-score">4.4 SCORE</a>, <a href="#45-desirability-index-di">4.5 Desirability Index (DI)</a>, <a href="#46-canonical-runtime-n0">4.6 Canonical Runtime N0</a></li>
+</ul>
+<h2 id="12-what-you-will-not-find-in-bjw">12. What You Will Not Find in BJW<a class="headerlink" href="#12-what-you-will-not-find-in-bjw" title="Permanent link">&para;</a></h2>
+<p>You will <strong>not</strong> find a closed-form “blackjack edge formula” for the simulator’s main EV result.</p>
+<p>BJW’s core engine:</p>
+<ul>
+<li>deals cards</li>
+<li>applies rules and policy lookups</li>
+<li>settles outcomes</li>
+<li>measures EV/variance from observed results</li>
+</ul>
+<p>So for the most important outputs, the core “formula” is often:</p>
+<div class="highlight"><pre><span></span><code>simulate outcomes, then compute sample moments from the realized data
+</code></pre></div>
+<p>That is why many of the most important audit targets are:</p>
+<ul>
+<li>count conversion</li>
+<li>betting logic</li>
+<li>settlement logic</li>
+<li>variance basis selection</li>
+<li>post-simulation summaries</li>
+</ul>
+<p>not a single house-edge equation.</p>
+<h2 id="13-fast-search-guide">13. Fast Search Guide<a class="headerlink" href="#13-fast-search-guide" title="Permanent link">&para;</a></h2>
+<p>If you want to verify BJW formulas against books or external material, these are the terms most likely to get you to the right place:</p>
+<ul>
+<li><code>true count = running count / decks remaining</code></li>
+<li><code>true count rounding away from zero</code></li>
+<li><code>fractional Kelly blackjack</code></li>
+<li><code>edge / variance Kelly</code></li>
+<li><code>SCORE blackjack</code></li>
+<li><code>Desirability Index blackjack</code></li>
+<li><code>N0 blackjack</code></li>
+<li><code>risk of ruin exp(-2BR/V)</code></li>
+<li><code>insurance EV = 3p - 1</code></li>
+<li><code>insurance break-even 1/3</code></li>
+<li><code>pair probability 13*C(4d,2)/C(52d,2)</code></li>
+<li><code>sample variance from sum of squares</code></li>
+<li><code>Welford online variance</code></li>
+<li><code>standard error of difference of means</code></li>
+<li><code>95% CI 1.96</code></li>
+</ul>
+<h2 id="14-minimum-file-set-to-read-first">14. Minimum File Set to Read First<a class="headerlink" href="#14-minimum-file-set-to-read-first" title="Permanent link">&para;</a></h2>
+<p>If you want the shortest possible manual audit path, start here:</p>
+<ol>
+<li><code>src/typescript/simulator_lite/src/simulator.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/betting_vm.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/index.ts</code></li>
+<li><code>src/typescript/simulator_lite/src/utils.ts</code></li>
+<li><code>src/python/wonk_tools/results.py</code></li>
+<li><code>scripts/validation/compare_to_reference.py</code></li>
+<li><code>scripts/validation/run_formula_recompute_audit.py</code></li>
+<li><code>src/python/simulator_support/sd_validation.py</code></li>
+</ol>
+<p>Then read the experiment/reporting duplicates only if you want to audit naming drift and non-canonical analysis math.</p>
+<h2 id="15-exact-references-recorded">15. Exact References Recorded<a class="headerlink" href="#15-exact-references-recorded" title="Permanent link">&para;</a></h2>
+<h3 id="r1-kelly-1956">R1. Kelly (1956)<a class="headerlink" href="#r1-kelly-1956" title="Permanent link">&para;</a></h3>
+<p>J. L. Kelly Jr., "A New Interpretation of Information Rate," <em>Bell System Technical Journal</em>, 35(4), 917-926, 1956.</p>
+<ul>
+<li>Official publication page: <a href="https://www.nokia.com/bell-labs/publications-and-media/publications/a-new-interpretation-of-information-rate/">Nokia Bell Labs</a></li>
+<li>DOI: <a href="https://doi.org/10.1002/j.1538-7305.1956.tb03809.x">10.1002/j.1538-7305.1956.tb03809.x</a></li>
+</ul>
+<p><strong>Used in this document</strong></p>
+<ul>
+<li>2.4 Kelly Fraction and Bet Size</li>
+</ul>
+<h3 id="r2-welford-1962">R2. Welford (1962)<a class="headerlink" href="#r2-welford-1962" title="Permanent link">&para;</a></h3>
+<p>B. P. Welford, "Note on a Method for Calculating Corrected Sums of Squares and Products," <em>Technometrics</em>, 4(3), 419-420, 1962.</p>
+<ul>
+<li>DOI: <a href="https://doi.org/10.1080/00401706.1962.10490022">10.1080/00401706.1962.10490022</a></li>
+</ul>
+<p><strong>Used in this document</strong></p>
+<ul>
+<li>4.1 Observed Sample Variance via Welford</li>
+</ul>
+<h3 id="r3-chan-golub-and-leveque-1983">R3. Chan, Golub, and LeVeque (1983)<a class="headerlink" href="#r3-chan-golub-and-leveque-1983" title="Permanent link">&para;</a></h3>
+<p>T. F. Chan, G. H. Golub, and R. J. LeVeque, "Algorithms for Computing the Sample Variance: Analysis and Recommendations," <em>The American Statistician</em>, 37(3), 242-247, 1983.</p>
+<ul>
+<li>DOI: <a href="https://doi.org/10.1080/00031305.1983.10483115">10.1080/00031305.1983.10483115</a></li>
+<li>Public PDF mirror used in this pass: <a href="https://www.math.pku.edu.cn/teachers/litj/notes/numer_anal/AmerStat_37_242_Chan_Variance.pdf">PKU mirror</a></li>
+</ul>
+<p><strong>Used in this document</strong></p>
+<ul>
+<li>5.1 Pooled Mean and Variance for Merged Worker Results</li>
+</ul>
+<h3 id="r4-nistsematech-e-handbook-confidence-and-comparison-pages">R4. NIST/SEMATECH e-Handbook Confidence and Comparison Pages<a class="headerlink" href="#r4-nistsematech-e-handbook-confidence-and-comparison-pages" title="Permanent link">&para;</a></h3>
+<p>NIST/SEMATECH e-Handbook of Statistical Methods, especially the confidence-interval and process-comparison pages used in this pass.</p>
+<ul>
+<li>Handbook home: <a href="https://www.itl.nist.gov/div898/handbook/">NIST/SEMATECH e-Handbook</a></li>
+<li>Confidence intervals overview: <a href="https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm">7.1.4 What are confidence intervals?</a></li>
+<li>Confidence-interval approach with unknown standard deviation: <a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc221.htm">7.2.2.1 Confidence interval approach</a></li>
+<li>Two-process mean comparison background: <a href="https://www.itl.nist.gov/div898/handbook/prc/section3/prc31.htm">7.3.1 Do two processes have the same mean?</a></li>
+</ul>
+<p><strong>Used in this document</strong></p>
+<ul>
+<li>9.1 Standard Error / 95% CI on EV</li>
+<li>9.2 Standard Error of EV-by-Bucket Difference</li>
+<li>9.3 t-Critical / Mean +- CI for Repeated Runs</li>
+<li>9.4 Z-Score for Run-to-Run Comparison</li>
+<li>9.5 Two-Sample t-Test for Sharpe Comparison</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.sections", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
