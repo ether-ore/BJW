@@ -34,6 +34,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - How It Works: how-it-works.md
+  - Reading JSON:
+    - Manifest Guide: read-manifest-json.md
+    - Results Guide: read-results-json.md
   - Counting Systems: counting-systems.md
   - Validation:
     - Overview: validation/index.md

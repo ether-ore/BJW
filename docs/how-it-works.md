@@ -30,7 +30,10 @@ A manifest is a complete, self-contained simulation specification. It includes:
 
 Manifests are schema-validated before execution. A manifest hash serves as the experiment identifier — the same manifest + same seed produces the same results on any machine.
 
-→ [Example manifest (6D S17 flat, no counting)](examples/manifest_6D_S17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_notcounting_flat_betting_burn1_tcdiv_half_deck_seed12345.json)
+If you want a player-friendly walkthrough:
+
+- [How to read a raw manifest JSON file](read-manifest-json.md)
+- [Example manifest (6D H17 Hi-Lo 1-12)](examples/manifest_6D_H17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_hilo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345.json)
 
 ---
 
@@ -73,3 +76,8 @@ Simulator output is a structured JSON file containing:
 - `actions_by_state_upcard`: per-decision-state action frequencies broken down by dealer upcard
 
 All metrics feed the validation pipeline, which independently recomputes the variance/risk figures in that block from raw accumulators to verify implementation correctness.
+
+If you want a player-friendly walkthrough:
+
+- [How to read a results JSON file](read-results-json.md)
+- [Example results (matching 6D H17 Hi-Lo 1-12 run)](examples/result_6D_H17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_hilo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345.json)

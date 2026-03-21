@@ -53,6 +53,8 @@ BJW does not currently match CVData output on counted scenarios. The gap is docu
 
 → [Architecture and design](how-it-works.md)
 → [Simulation methodology](methodology.md)
+→ [How to read a raw manifest JSON file](read-manifest-json.md)
+→ [How to read a results JSON file](read-results-json.md)
 
 ---
 
