@@ -1,7 +1,5 @@
 # How to Read a Raw Manifest JSON File
 
-Canonical source: [docs/guides/how-to-read-a-manifest-json.md](https://github.com/ether-ore/BJW/blob/main/docs/guides/how-to-read-a-manifest-json.md)
-
 Example files:
 
 - [Example manifest JSON](examples/manifest_6D_H17_DOA_DAS_NRSA_NS_peek=A_or_T_pen=75_hilo_hilo_1_to_12_common_burn1_tcdiv_half_deck_seed12345.json)
