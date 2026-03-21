@@ -69,7 +69,7 @@
     },
     "policy_source": {
       "key": "flat_betting",
-      "path": "/Users/eddie.merkelicloud.com/Library/Mobile Documents/com~apple~CloudDocs/Dev/blackjack_wonk/blackjack/data/rules/betting/policy/flat_betting.v1.json"
+      "path": "/blackjack_wonk/blackjack/data/rules/betting/policy/flat_betting.v1.json"
     }
   },
   "payouts": {
@@ -33003,7 +33003,7 @@
       "rules_code": "S17DOADASNS"
     },
     "manifest_kind": "play",
-    "last_result_path": "/Users/eddie.merkelicloud.com/Library/Mobile Documents/com~apple~CloudDocs/Dev/blackjack_wonk/blackjack/data/results/suite_core_6D_S17_flat_notcounting_1000000000.json",
+    "last_result_path": "/blackjack_wonk/blackjack/data/results/suite_core_6D_S17_flat_notcounting_1000000000.json",
     "last_result_kind": "play",
     "last_result_mode": "normal",
     "last_result_generated_at": "2026-03-13T16:23:12.486Z"
