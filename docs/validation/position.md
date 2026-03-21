@@ -6,7 +6,7 @@
 
 ## What This Page Is
 
-This page documents what BJW has verified, what it hasn't, and why we believe the results are trustworthy for the claims we make. It is written for an audience familiar with Schlesinger's Chapter 10 variance framework, Griffin's theory, and tools like CVData/CVCX. We are not softening the limitations.
+This page documents what BJW has verified, what it hasn't, and why we believe the results are trustworthy for the claims we make. It is written for an audience familiar with blackjack variance/DI/SCORE literature, Griffin's theory, and tools like CVData/CVCX. We are not softening the limitations.
 
 ---
 
@@ -31,13 +31,15 @@ All other insurance thresholds confirmed against counting system source files: H
 
 ### 2. Variance and Risk Metric Calculations
 
-BJW implements the Schlesinger Chapter 10 variance formula directly:
+BJW currently computes variance/risk metrics with the following variable-betting variance decomposition:
 
 > **Var(session) = E[b²] · Var(w) + Var(b) · E[w]² + 2 · Cov(b,w) · E[b] · E[w]**
 
 Where *b* is bet size and *w* is outcome per unit wagered.
 
-To verify this implementation, we built a separate Python validation script entirely independent of the simulator. This script reads the raw per-hand accumulators from simulator output — sums of *b*, *w*, *b²*, *w²*, and *bw* — and recomputes every derived metric from scratch: E[b], E[w], Var(b), Var(w), Cov(b,w), the full Chapter 10 variance, DI, SCORE, and N₀.
+This equation is BJW's own implementation choice. It is not presented here as a direct quoted equation from *Blackjack Attack*.
+
+To verify this implementation, we built a separate Python validation script entirely independent of the simulator. This script reads the raw per-hand accumulators from simulator output — sums of *b*, *w*, *b²*, *w²*, and *bw* — and recomputes every derived metric from scratch: E[b], E[w], Var(b), Var(w), Cov(b,w), the full variance result for this reporting path, DI, SCORE, and N₀.
 
 We then verified the algebraic identities:
 
@@ -90,18 +92,7 @@ On the March 13 rerun, 7 of the 8 refreshed BJW core results passed internal tel
 
 ### What We Believe Is Causing This
 
-After the March 13 rerun, we no longer treat the parity gap as a single-mechanism story.
-
-One confirmed BJW-side defect is now resolved: BJW had been counting the dealer hole card before the player's first decision. That could change deviation execution without any new visible card. Fixing it materially narrowed several counted EV deltas:
-
-- 1D H17 Hi-Lo 1-12 I18: +0.143 → +0.013
-- 2D H17 LS Hi-Lo 1-4: +0.069 → −0.038
-- 6D H17 LS Hi-Lo 1-12 I18: +0.041 → −0.009
-- 6D S17 Hi-Lo 1-12 I18: +0.100 → +0.063
-
-A second March 13 fix repaired forced manifest regeneration for `hilo_1_to_12` by correcting the BVM transpilation of its explicit `else` tier. The refreshed 1D rerun uses newly regenerated BJW manifests.
-
-After those fixes, the remaining pattern is still most consistent with **TC bucket occupancy / true-count-frequency mismatch** in counted scenarios. Per-bucket EVs are closer than aggregate EVs, and several scenarios still fail primarily through TC-frequency gates. That unresolved occupancy story remains the leading residual mechanism, but it is clearly not the only contributor that existed during the campaign.
+The remaining pattern is most consistent with **TC bucket occupancy / true-count-frequency mismatch** in counted scenarios. Per-bucket EVs are closer than aggregate EVs, and several scenarios still fail primarily through TC-frequency gates.
 
 We cannot resolve the remaining gap with certainty because CVData is closed-source. However, the CVData Reference Manual documents several TC calculation options that remain plausible contributors to the residual occupancy divergence:
 
@@ -117,7 +108,7 @@ We cannot resolve the remaining gap with certainty because CVData is closed-sour
 
 What we can say:
 
-- This is not a formula error. Chapter 10 implementation is independently verified.
+- This is not a math-pipeline error. BJW's current variance/risk implementation is independently recomputed.
 - This is not a basic strategy error. Play policies are audited.
 - At least one BJW-side decision-timing bug was real and is now fixed.
 - The gap persists after testing multiple TC divisor configurations.

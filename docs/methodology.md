@@ -85,6 +85,16 @@ See [Validation Position](validation/position.md) for full detail.
 
 ---
 
+## Formula Inventory
+
+For a full inventory of the blackjack and advantage-play formulas currently implemented in BJW — including runtime formulas, validation math, optimizer/reweighting formulas, and known duplicate or conflicting definitions in helper/experiment code — see:
+
+- [BJW Blackjack/AP Formula Inventory](formula-inventory.md)
+
+This is the best place to audit what BJW is actually calculating, where each formula is used, what its variables mean inside the pipeline, and what literature/search terms to use if you want to verify the underlying idea yourself.
+
+---
+
 ## Milestones
 
 | Date | Milestone |

@@ -21,6 +21,18 @@ For each policy file, every hard total, soft total, and pair-splitting decision 
 
 **224 blocking checks. 0 failures.**
 
+No mismatches found across all 16 policy files.
+
+---
+
+## Counting System Configuration Audit
+
+### What Was Checked
+
+Insurance thresholds for all ten counting systems were verified against published sources and counted against empirical results.
+
+### Results
+
 Two items required disposition:
 
 | Item | Disposition | Resolution |
@@ -28,7 +40,7 @@ Two items required disposition:
 | Halves count insurance threshold | Confirmed bug | Was coded as TC ≥ 1. Corrected to TC ≥ 3 per published sources. Fixed. |
 | Zen count insurance threshold | Source-confirmed | Confirmed at TC ≥ 5 (count-per-deck convention). Primary source citation recorded in counting system file. Empirically verified at 100M rounds. |
 
-No other mismatches found across all 16 policy files.
+All other thresholds confirmed correct against source files (Hi-Lo TC ≥ 3, KO RC ≥ 3, REKO RC ≥ 2, Hi-Opt I TC ≥ 3, Hi-Opt II TC ≥ 3, Omega II TC ≥ 3, Red Seven RC ≥ 2, Ace-Five: never).
 
 ---
 
@@ -36,9 +48,11 @@ No other mismatches found across all 16 policy files.
 
 ### What Was Checked
 
-BJW implements the Schlesinger Chapter 10 variance formula:
+BJW currently uses the following variable-betting variance decomposition in its `summary.chapter10` reporting path:
 
 > **Var(session) = E[b²] · Var(w) + Var(b) · E[w]² + 2 · Cov(b,w) · E[b] · E[w]**
+
+This equation is BJW's own implementation choice. It is not presented here as a direct quoted equation from *Blackjack Attack*.
 
 To verify this, a separate Python script (not part of the simulator) reads the raw per-hand accumulators from simulator output and recomputes every derived metric independently:
 
@@ -56,13 +70,13 @@ To verify this, a separate Python script (not part of the simulator) reads the r
 - Var(b) = sum_b2/count − E[b]²
 - Var(w) = sum_w2/count − E[w]²
 - Cov(b,w) = sum_bw/count − E[b]·E[w]
-- Full Chapter 10 variance
+- Full variance result for this reporting path
 - DI = E[b] · E[w] / √Var(session)
 
 **Algebraic identities verified**:
 - DI² = SCORE
 - SCORE × N₀ = 1,000,000
-- variance = SD²  (for all three methodology variants: naive, Chapter 10, DI-adjusted)
+- variance = SD²  (for all three methodology variants: naive, `summary.chapter10`, DI-adjusted)
 
 This is a genuine independent recomputation — the Python script derives all metrics from first principles using only the raw accumulator values. It does not call any simulator code.
 
@@ -70,7 +84,7 @@ This is a genuine independent recomputation — the Python script derives all me
 
 **400 blocking checks across 16 result files (8 scenarios × 100M rounds + 1B rounds). 0 failures. Tolerance: 1×10⁻⁶.**
 
-This confirms: BJW's variance, SD, DI, SCORE, and N₀ figures are correct given the game data collected. The formula implementation is verified.
+This confirms: BJW's variance, SD, DI, SCORE, and N₀ figures are correct given the game data collected. The implementation is verified.
 
 ---
 
@@ -80,7 +94,7 @@ This confirms: BJW's variance, SD, DI, SCORE, and N₀ figures are correct given
 
 A set of properties that any mathematically correct blackjack simulator must satisfy:
 
-**Flat EV bands**: Flat-betting EV for 6D S17 and 6D H17 falls within accepted published house-edge ranges for those rulesets.
+**Flat EV bands**: Flat-betting EV for 6D S17 and 6D H17 falls within accepted published house-edge ranges for those rulesets (reference: Wong, *Professional Blackjack*; Griffin, *The Theory of Blackjack*).
 
 **Directional invariant**: S17 produces better player EV than H17 under otherwise identical conditions.
 
@@ -94,7 +108,6 @@ A set of properties that any mathematically correct blackjack simulator must sat
 | 6D H17 flat EV within published house-edge band | ✓ Pass |
 | S17 EV > H17 EV (matched conditions) | ✓ Pass |
 | Hi-Lo 6D EV monotonically increasing by TC bin | ✓ Pass |
-| Hi-Lo 6D EV monotonically increasing — all TC bins | ✓ Pass |
 | Hi-Lo 6D S17 EV > flat EV (counting adds edge) | ✓ Pass |
 | Hi-Lo 8D EV monotonically increasing by TC bin | ✓ Pass |
 | Hi-Lo 1D EV monotonically increasing by TC bin | **Explained residual** |

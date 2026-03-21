@@ -11,9 +11,9 @@ BJW is a tool for people who already know the math — analysts, counters, and r
 BJW simulates blackjack play under fully specified conditions and produces:
 
 - **EV per hand** — expected value under the configured strategy and rules
-- **SD, DI, SCORE, N₀** — via the Schlesinger Chapter 10 variance framework
-- **EV by true count bucket** — per-TC breakdown of edge contribution
-- **TC frequency distribution** — time spent at each count level
+- **SD, DI, SCORE, N₀** — via BJW's current variance and risk pipeline
+- **EV by count bucket** — per-TC (or per-RC for unbalanced systems) breakdown of edge contribution
+- **Count frequency distribution** — time spent at each TC or RC level
 - **Action frequencies** — doubles, splits, surrenders, insurance decisions
 - **Deviation tracking** — which index plays were taken and when
 
@@ -32,7 +32,7 @@ Every simulation is driven by a **manifest** — a JSON configuration capturing 
 
 **Counting systems**: Hi-Lo, KO, REKO, Zen, Halves, Hi-Opt I, Hi-Opt II, Omega II, Red Seven, Ace-Five, and others — see [Counting Systems](counting-systems.md)
 
-**Betting**: flat, count-based spreads (1-2 through 1-16+), progressions (Martingale, Paroli, 1-3-2-6, and others), state machine policies
+**Betting**: flat, count-based spreads (1-2 through 1-16), progressions (Martingale, Paroli, 1-3-2-6, and others), state machine policies
 
 **Deviations**: Illustrious 18 (Hi-Lo), KO Preferred and Full sets, custom deviation policies
 
@@ -40,7 +40,7 @@ Every simulation is driven by a **manifest** — a JSON configuration capturing 
 
 ## Validation Status
 
-BJW's math is independently verified against the Schlesinger Chapter 10 variance formula. Basic strategy across all 16 policy variants has been audited against published charts.
+BJW's variance, SD, DI, SCORE, and N₀ outputs are independently recomputed from raw accumulators. Basic strategy across all 16 policy variants has been audited against published charts.
 
 BJW does not currently match CVData output on counted scenarios. The gap is documented, classified by root cause, and published openly.
 
@@ -53,6 +53,8 @@ BJW does not currently match CVData output on counted scenarios. The gap is docu
 
 → [Architecture and design](how-it-works.md)
 → [Simulation methodology](methodology.md)
+→ [How to read a raw manifest JSON file](read-manifest-json.md)
+→ [How to read a results JSON file](read-results-json.md)
 
 ---
 
